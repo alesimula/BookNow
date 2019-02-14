@@ -1,0 +1,10 @@
+<resources>
+    <declare-styleable name="ScalableImageView">
+        <attr name="fixedScale" format="enum">
+            <enum name="width" value="0"/>
+            <enum name="height" value="1"/>
+        </attr>
+        <attr name="aspectRatio" format="string"/>
+        <attr name="relativeAspectRatio" format="boolean"/>
+    </declare-styleable>
+</resources>
