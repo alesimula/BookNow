@@ -24,7 +24,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void fillUserDatabase() {
         User.add(mContext, "admin@booknow.com", "administrator", "admin01");
-        User.add(mContext, "userandombooknow.com", "userandom", "admin");
+        try {
+            User admin = User.get(mContext,"admin@booknow.com", "admin01");
+            admin.setName(mContext, "Adminolfi");
+        }
+        catch (Exception e) {}
     }
 
     @Override

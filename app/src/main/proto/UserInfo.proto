@@ -1,0 +1,33 @@
+syntax = "proto3";
+package proto;
+
+option java_package = "com.pdd.booknow.proto";
+option java_outer_classname = "UserInfo";
+//import "google/protobuf/timestamp.proto";
+
+message Info {
+  string name = 1;
+  string surname = 2;
+  repeated PhoneNumber phones = 3;
+  repeated CreditCard creditCards = 4;
+
+  enum PhoneType {
+    MOBILE = 0;
+    HOME = 1;
+    WORK = 2;
+  }
+
+  message CreditCard {
+    string ownerName = 1;
+    string ownerSurname = 2;
+    string number = 3;
+    int32 cvv = 4;
+    int32 expMonth = 5;
+    int32 expYear = 6;
+  }
+
+  message PhoneNumber {
+    int64 number = 1;
+    PhoneType type = 2;
+  }
+}

@@ -46,7 +46,7 @@ public class ShowResults extends AppCompatActivity {
         welcomeText = (TextView) findViewById(R.id.welcomeText);
         back = (Button) findViewById(R.id.back);
 
-        if (!fail) welcomeText.setText(welcomeText.getText().toString().replace("%s", user.getEmail()));
+        if (!fail) welcomeText.setText(welcomeText.getText().toString().replace("%s", user.getInfo().getName()));
         else {
             welcomeText.setText("Access denied");
             header.setBackgroundColor(ContextCompat.getColor(mContext, R.color.colorBackgroundDarkError));

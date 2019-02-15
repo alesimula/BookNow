@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-//apply plugin: 'com.google.protobuf'
+apply plugin: 'com.google.protobuf'
 
 android {
     compileSdkVersion 28
@@ -30,12 +30,13 @@ android {
         main {
             res.srcDirs = ['src/main/res/']
             java.srcDirs = ['src/main/java/']
-            //proto.srcDirs = ['src/main/protos/']
+            proto.srcDirs = ['src/main/proto/']
         }
     }
 }
 
 final String SUPPORT_LIBS_VERSION = '28.0.0'
+final String PROTOBUF_VERSION = '3.6.1'
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "com.android.support:appcompat-v7:${SUPPORT_LIBS_VERSION}"
@@ -43,16 +44,18 @@ dependencies {
     implementation "com.android.support:gridlayout-v7:${SUPPORT_LIBS_VERSION}"
 
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
-    //implementation 'com.google.protobuf:protobuf-lite:3.0.1'
+    implementation 'com.google.protobuf:protobuf-lite:3.0.1'
+    //protobuf "com.google.protobuf:protobuf-java:${PROTOBUF_VERSION}"
+
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }
 
-/*protobuf {
+protobuf {
     protoc {
-        artifact = 'com.google.protobuf:protoc:3.6.1'
+        artifact = "com.google.protobuf:protoc:${PROTOBUF_VERSION}"
     }
     plugins {
         javalite {
@@ -69,4 +72,4 @@ dependencies {
             }
         }
     }
-}*/
+}
