@@ -18,8 +18,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class User implements Serializable {
+    public static final String GUEST_USERNAME = "guest", GUEST_EMAIL = GUEST_USERNAME+"@booknow.com";
     static final byte[] INFO_EMPTY() {return UserInfo.Info.newBuilder().build().toByteArray();}
-    private static final byte[] INFO_GUEST() {return UserInfo.Info.newBuilder().setName("Guest").build().toByteArray();}
 
     private String email, username;
     private BigInteger password;
@@ -29,7 +29,7 @@ public class User implements Serializable {
     public static Pattern MATCH_USERNAME_PASS = Pattern.compile("([a-zA-Z\\d_\\.\\-]{6,64})");
 
     public User() {
-        this("guest@booknow.com", "guest", (BigInteger)null, INFO_GUEST());
+        this(GUEST_EMAIL, GUEST_USERNAME, (BigInteger)null, UserInfo.Info.newBuilder().setName(GUEST_USERNAME).build().toByteArray());
     }
     User(String email, String username, BigInteger password, byte[] info) {
         this.email = email;
@@ -58,6 +58,10 @@ public class User implements Serializable {
         if (password==null || password.isEmpty() || !UserDatabase.encodePassword(user,password).equals(user.password))
             throw new UserDatabase.UserInvalidPasswordException(user);
         return user;
+    }
+
+    public boolean isGuest(){
+        return GUEST_EMAIL.equals(email);
     }
 
     public String getEmail() {

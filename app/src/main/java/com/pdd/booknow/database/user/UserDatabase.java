@@ -138,8 +138,8 @@ public class UserDatabase {
         @Override
         protected void onCreateTable(SQLiteDatabase db) {
             db.execSQL("CREATE TABLE IF NOT EXISTS "+TABLE_NAME+" (" +
-                    COLUMN_EMAIL+" VARCHAR PRIMARY KEY CHECK ("+COLUMN_EMAIL+" REGEXP '[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}'), " +
-                    COLUMN_USERNAME+" VARCHAR UNIQUE NOT NULL CHECK ("+COLUMN_USERNAME+" REGEXP '[A-Z0-9a-z._-]{6,64}'), " +
+                    COLUMN_EMAIL+" VARCHAR PRIMARY KEY CHECK ("+COLUMN_EMAIL+" REGEXP '[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}' AND "+COLUMN_EMAIL+" <> '"+User.GUEST_EMAIL+"'), " +
+                    COLUMN_USERNAME+" VARCHAR UNIQUE NOT NULL CHECK ("+COLUMN_USERNAME+" REGEXP '[A-Z0-9a-z._-]{6,64}' AND "+COLUMN_USERNAME+" <> '"+User.GUEST_USERNAME+"'), " +
                     COLUMN_PASSWORD+" BLOB NOT NULL CHECK (LENGTH("+COLUMN_PASSWORD+") = 64), " +
                     COLUMN_INFO+" BLOB NOT NULL, " +
                     COLUMN_ICON+" BLOB " +
