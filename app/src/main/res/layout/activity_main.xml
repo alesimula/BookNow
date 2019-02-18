@@ -11,26 +11,12 @@
     android:orientation="vertical"
     android:showDividers="middle"
     tools:context=".MainActivity" >
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@color/colorBackgroundDark"
-        android:layout_weight="1">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="Login"
-            android:textColor="#BCCCD5"
-            android:textSize="34sp" />
-    </RelativeLayout>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="#E4ECF1"
+        android:background="@color/colorBackground"
         android:fillViewport="true"
-        android:layout_weight="3">
+        android:layout_weight="5">
         <LinearLayout
             android:id="@+id/mainGrid"
             android:layout_width="match_parent"
@@ -63,7 +49,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginRight="8dp"
                         android:foregroundGravity="center"
-                        android:tint="#BCCCD5"
+                        android:tint="@color/colorAccent"
                         app:srcCompat="@drawable/ic_account_username"
                         app:aspectRatio="1"
                         app:fixedScale="height" />
@@ -72,8 +58,8 @@
                         android:id="@+id/name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="#BCCCD5"
-                        android:textColorHint="#99B2C2"
+                        android:textColor="@color/colorAccent"
+                        android:textColorHint="@color/colorHint"
                         android:hint="Enter username"
                         android:textAlignment="center"
                         android:textSize="20dp" />
@@ -104,7 +90,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginRight="8dp"
                         android:foregroundGravity="center"
-                        android:tint="#BCCCD5"
+                        android:tint="@color/colorAccent"
                         app:srcCompat="@drawable/ic_account_password"
                         app:aspectRatio="1"
                         app:fixedScale="height" />
@@ -114,8 +100,8 @@
                         android:inputType="textPassword"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="#BCCCD5"
-                        android:textColorHint="#99B2C2"
+                        android:textColor="@color/colorAccent"
+                        android:textColorHint="@color/colorHint"
                         android:hint="Enter password"
                         android:textAlignment="center"
                         android:textSize="20dp" />
@@ -133,8 +119,20 @@
                 android:layout_marginRight="16dp"
                 android:id="@+id/login"
                 style="@style/Widget.AppCompat.Button.Colored"
-                android:background="@drawable/button_material_round"
+                android:background="@drawable/button_material_rounded"
                 android:text="Login" />
+            <Button
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#BCCCD5"
+                android:layout_marginBottom="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:id="@+id/login2"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:background="@drawable/button_material_rounded_dark"
+                android:text="Login 2 electric bogaloo" />
             <TextView
                 android:id="@+id/text2"
                 android:gravity="center"
