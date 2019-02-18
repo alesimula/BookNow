@@ -92,7 +92,7 @@ public class UserDatabase {
         return mUserDb.insertOrRollback(values);
     }
     public long insertUser(@NonNull String email, @NonNull String username, @NonNull BigInteger password, byte[] info, Bitmap icon) {
-        if (info==null) info = User.INFO_EMPTY();
+        if (info==null) info = User.INFO_EMPTY().toByteArray();
         return insertUser(email, username, password.toByteArray(), info, icon);
     }
 

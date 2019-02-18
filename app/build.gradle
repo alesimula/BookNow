@@ -44,8 +44,8 @@ dependencies {
     implementation "com.android.support:gridlayout-v7:${SUPPORT_LIBS_VERSION}"
 
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
-    implementation 'com.google.protobuf:protobuf-lite:3.0.1'
-    //protobuf "com.google.protobuf:protobuf-java:${PROTOBUF_VERSION}"
+    //implementation 'com.google.protobuf:protobuf-lite:3.0.1'
+    implementation "com.google.protobuf:protobuf-java:${PROTOBUF_VERSION}"
 
 
     testImplementation 'junit:junit:4.12'
@@ -57,19 +57,14 @@ protobuf {
     protoc {
         artifact = "com.google.protobuf:protoc:${PROTOBUF_VERSION}"
     }
-    plugins {
-        javalite {
-            artifact = 'com.google.protobuf:protoc-gen-javalite:3.0.0'
-        }
-    }
     generateProtoTasks {
         all().each { task ->
             task.builtins {
-                remove java
-            }
-            task.plugins {
-                javalite {}
+                java {
+                    outputSubDir = ''
+                }
             }
         }
     }
+    generatedFilesBaseDir = "${projectDir}/build/generated/source/proto"
 }

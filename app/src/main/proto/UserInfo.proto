@@ -3,7 +3,7 @@ package proto;
 
 option java_package = "com.pdd.booknow.proto";
 option java_outer_classname = "UserInfo";
-//import "google/protobuf/timestamp.proto";
+option optimize_for = SPEED;
 
 message Info {
   string name = 1;
