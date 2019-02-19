@@ -25,8 +25,8 @@ public class User implements Serializable {
     private BigInteger password;
     private UserInfo.Info info;
 
-    public static Pattern MATCH_EMAIL = Pattern.compile("([a-zA-Z\\d_%\\+\\.\\-]+)(@)([a-zA-Z\\d\\.\\-]+)(\\.)([a-zA-Z]{2,64})");
-    public static Pattern MATCH_USERNAME_PASS = Pattern.compile("([a-zA-Z\\d_\\.\\-]{6,64})");
+    public static final Pattern MATCH_EMAIL = Pattern.compile("([a-zA-Z\\d_%\\+\\.\\-]+)(@)([a-zA-Z\\d\\.\\-]+)(\\.)([a-zA-Z]{2,64})");
+    public static final Pattern MATCH_USERNAME_PASS = Pattern.compile("([a-zA-Z\\d_\\.\\-]{6,64})");
 
     public User() {
         this(GUEST_EMAIL, GUEST_USERNAME, (BigInteger)null, UserInfo.Info.newBuilder().setName(GUEST_USERNAME).build());
@@ -142,7 +142,7 @@ public class User implements Serializable {
     }
     public UserInfo.Info getInfo(@Nullable Context context) {
         try {
-            if (context==null) return (this.info==null) ? INFO_EMPTY() : this.info;
+            if (context==null) return (this.info==null) ? (this.info = INFO_EMPTY()) : this.info;
             UserDatabase db = UserDatabase.getInstance(context);
             UserInfo.Info updatedInfo = UserInfo.Info.parseFrom(db.getUserInfo(email));
             if (updatedInfo!=null) this.info = updatedInfo;

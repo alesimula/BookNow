@@ -121,18 +121,6 @@
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:background="@drawable/button_material_rounded"
                 android:text="Login" />
-            <Button
-                android:layout_marginTop="20dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="#BCCCD5"
-                android:layout_marginBottom="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:id="@+id/login2"
-                style="@style/Widget.AppCompat.Button.Colored"
-                android:background="@drawable/button_material_rounded_dark"
-                android:text="Login 2 electric bogaloo" />
             <TextView
                 android:id="@+id/text2"
                 android:gravity="center"
@@ -142,7 +130,31 @@
                 android:layout_height="wrap_content"
                 android:linksClickable="true"
                 android:clickable="true"
-                android:text="sign up"/>
+                android:text="or"/>
+            <Button
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#BCCCD5"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:id="@+id/signup"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:background="@drawable/button_material_rounded"
+                android:text="Sign up" />
+            <Button
+                android:layout_marginTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#BCCCD5"
+                android:layout_marginBottom="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:id="@+id/guestLogin"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:background="@drawable/button_material_rounded_dark"
+                android:text="Guest" />
 
         </LinearLayout>
     </ScrollView>
