@@ -7,7 +7,7 @@
     android:layout_marginLeft="0dp"
     android:layout_marginRight="0dp"
     android:baselineAligned="false"
-    android:divider="?android:attr/dividerHorizontal"
+    android:divider="?attr/dividerHorizontal"
     android:orientation="vertical"
     android:showDividers="middle"
     tools:context=".MainActivity" >
@@ -26,7 +26,7 @@
             android:gravity="center_vertical"
             android:rowCount="3">
 
-            <android.support.v7.widget.CardView
+            <androidx.cardview.widget.CardView
                 android:id="@+id/cardViewName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -65,9 +65,9 @@
                         android:textSize="20dp" />
 
                 </LinearLayout>
-            </android.support.v7.widget.CardView>
+            </androidx.cardview.widget.CardView>
 
-            <android.support.v7.widget.CardView
+            <androidx.cardview.widget.CardView
                 android:id="@+id/cardViewPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -107,7 +107,7 @@
                         android:textSize="20dp" />
 
                 </LinearLayout>
-            </android.support.v7.widget.CardView>
+            </androidx.cardview.widget.CardView>
 
             <Button
                 android:layout_marginTop="20dp"

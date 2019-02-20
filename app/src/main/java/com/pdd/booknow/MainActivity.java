@@ -2,10 +2,11 @@ package com.pdd.booknow;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import android.os.Bundle;
-import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -110,5 +111,19 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return user;
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelable("cardcolor_name", cardViewName.getCardBackgroundColor());
+        outState.putParcelable("cardcolor_password", cardViewPassword.getCardBackgroundColor());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        cardViewName.setCardBackgroundColor(savedInstanceState.getParcelable("cardcolor_name"));
+        cardViewPassword.setCardBackgroundColor(savedInstanceState.getParcelable("cardcolor_password"));
     }
 }

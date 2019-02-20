@@ -11,7 +11,7 @@ import com.pdd.booknow.R;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
-public class ScalableImageView extends android.support.v7.widget.AppCompatImageView {
+public class ScalableImageView extends androidx.appcompat.widget.AppCompatImageView {
 
     public ScalableImageView(Context context) {
         this(context, (AttributeSet)null);
