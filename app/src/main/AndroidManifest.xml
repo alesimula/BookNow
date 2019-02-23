@@ -19,6 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name="com.pdd.booknow.ShowResults"></activity>
+        <activity android:name="com.pdd.booknow.ActivitySignup"></activity>
     </application>
 
 </manifest>

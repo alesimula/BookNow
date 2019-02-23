@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     EditText name, password;
     CardView cardViewName, cardViewPassword;
-    Button login, guestLogin;
+    Button login, signup, guestLogin;
     User user;
     public static final String EXTRA_USER = User.class.getCanonicalName();
 
@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         name = (EditText)findViewById(R.id.name);
         password = (EditText)findViewById(R.id.password);
         login = (Button)findViewById(R.id.login);
+        signup = (Button)findViewById(R.id.signup);
         guestLogin = (Button)findViewById(R.id.guestLogin);
 
         cardViewName = (CardView) findViewById(R.id.cardViewName);
@@ -57,6 +58,14 @@ public class MainActivity extends AppCompatActivity {
                     showResults.putExtra(EXTRA_USER, user);
                     startActivity(showResults);
                 }
+            }
+        });
+
+        signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent activitySignup = new Intent(MainActivity.this, ActivitySignup.class);
+                startActivity(activitySignup);
             }
         });
 
