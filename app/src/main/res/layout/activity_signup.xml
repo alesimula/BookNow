@@ -135,30 +135,22 @@
                 android:id="@+id/editText2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="4dp"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:hint="Insert Name"/>
-
             <androidx.appcompat.widget.AppCompatEditText
                 android:layout_weight="1"
                 android:id="@+id/editText3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="4dp"
                 android:ems="10"
                 android:inputType="textPassword"
                 android:hint="Insert Password"/>
-
             <androidx.appcompat.widget.AppCompatEditText
                 android:layout_weight="1"
                 android:id="@+id/editText4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="4dp"
                 android:ems="10"
                 android:inputType="textPassword"
                 android:hint="Confirm Password"/>
