@@ -6,11 +6,32 @@
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline7"
+        android:id="@+id/margin_left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.75" />
+        app:layout_constraintGuide_percent="@dimen/form_margin_left" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/margin_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="@dimen/form_margin_right" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/margin_title_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="@dimen/form_margin_title_left" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/margin_title_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="@dimen/form_margin_title_right" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline1"
@@ -61,27 +82,6 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.77" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.1" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.25" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.9" />
-
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/textView2"
         android:layout_width="0dp"
@@ -90,8 +90,8 @@
         android:autoSizeTextType="uniform"
         android:text="Sign Up"
         app:layout_constraintBottom_toTopOf="@+id/guideline8"
-        app:layout_constraintEnd_toStartOf="@+id/guideline7"
-        app:layout_constraintStart_toStartOf="@+id/guideline6"
+        app:layout_constraintEnd_toStartOf="@+id/margin_title_right"
+        app:layout_constraintStart_toStartOf="@+id/margin_title_left"
         app:layout_constraintTop_toTopOf="@+id/guideline1" />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -102,8 +102,8 @@
         android:text="It's free and only takes a minute"
         android:autoSizeTextType="uniform"
         app:layout_constraintBottom_toTopOf="@+id/guideline9"
-        app:layout_constraintEnd_toStartOf="@+id/guideline7"
-        app:layout_constraintStart_toStartOf="@+id/guideline6"
+        app:layout_constraintEnd_toStartOf="@+id/margin_title_right"
+        app:layout_constraintStart_toStartOf="@+id/margin_title_left"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <ScrollView
@@ -112,8 +112,8 @@
         android:background="@color/colorBackground"
         android:fillViewport="true"
         app:layout_constraintBottom_toTopOf="@+id/guideline14"
-        app:layout_constraintEnd_toStartOf="@+id/guideline5"
-        app:layout_constraintStart_toStartOf="@+id/guideline4"
+        app:layout_constraintEnd_toStartOf="@+id/margin_right"
+        app:layout_constraintStart_toStartOf="@+id/margin_left"
         app:layout_constraintTop_toTopOf="@+id/guideline10">
         <LinearLayout
             android:id="@+id/mainGrid"
@@ -164,8 +164,8 @@
         android:text="Button"
         android:background="@drawable/button_material_rounded"
         app:layout_constraintBottom_toTopOf="@+id/guideline17"
-        app:layout_constraintEnd_toStartOf="@+id/guideline5"
-        app:layout_constraintStart_toStartOf="@+id/guideline4"
+        app:layout_constraintEnd_toStartOf="@+id/margin_right"
+        app:layout_constraintStart_toStartOf="@+id/margin_left"
         app:layout_constraintTop_toTopOf="@+id/guideline16" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
