@@ -5,4 +5,9 @@
     <dimen name="form_margin_title_left" format="float">0.25</dimen>
     <dimen name="form_margin_title_right" format="float">0.75</dimen>
 
+    <dimen name="activity_main_user_up" format="float">0.15</dimen>
+    <dimen name="activity_main_user_down" format="float">0.25</dimen>
+    <dimen name="activity_main_password_up" format="float">0.28</dimen>
+    <dimen name="activity_main_password_down" format="float">0.38</dimen>
+
 </resources>
