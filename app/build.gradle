@@ -1,17 +1,38 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.protobuf'
 
+
+apply plugin: 'kotlin-android'
+/*apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'*/
+
+
 android {
     compileSdkVersion 28
+    dataBinding {
+        enabled = true
+    }
+    /*kapt {
+        javacOptions {
+            option("-Xmaxerrs", 500)
+        }
+    }*/
     defaultConfig {
         applicationId "com.pdd.booknow"
         minSdkVersion 15
         targetSdkVersion 28
         versionCode 100
         versionName "0.1"
+        multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                includeCompileClasspath true
+            }
+        }
     }
+    //dataBinding.enabled = true
     buildTypes {
         debug {
             minifyEnabled false
@@ -39,6 +60,15 @@ final String PROTOBUF_VERSION = '3.6.1'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.core:core-ktx:1.0.2'
+
+    //implementation 'javax.xml.bind:jaxb-api:2.3.1'
+    //implementation 'com.android.support:multidex:1.0.3'
+    //implementation "androidx.databinding:databinding-compiler:$gradle_version"
+    //implementation "com.android.databinding:compiler:3.1.4"
+    //implementation 'com.android.databinding:baseLibrary:3.4.1'
+
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.gridlayout:gridlayout:1.0.0'

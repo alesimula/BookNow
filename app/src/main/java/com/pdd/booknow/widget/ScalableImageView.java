@@ -5,12 +5,23 @@ import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.View;
+
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.databinding.BindingMethod;
+import androidx.databinding.BindingMethods;
 
 import com.pdd.booknow.R;
 
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
+@BindingMethods({
+        @BindingMethod(
+                type = ScalableImageView.class,
+                attribute = "app:srcCompat",
+                method = "setImageDrawable")
+})
 public class ScalableImageView extends androidx.appcompat.widget.AppCompatImageView {
 
     public ScalableImageView(Context context) {
@@ -23,6 +34,7 @@ public class ScalableImageView extends androidx.appcompat.widget.AppCompatImageV
 
     public ScalableImageView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
 
         TypedArray a = context.getTheme().obtainStyledAttributes(
                 attrs,

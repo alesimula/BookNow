@@ -5,15 +5,32 @@ import android.content.Intent;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.Guideline;
 import androidx.core.content.ContextCompat;
+import androidx.databinding.BindingAdapter;
+import androidx.databinding.BindingMethod;
+import androidx.databinding.BindingMethods;
+import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ViewDataBinding;
+
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.pdd.booknow.database.user.User;
 import com.pdd.booknow.database.user.UserDatabase;
+import com.pdd.booknow.widget.ScalableImageView;
 
+import java.util.HashMap;
+
+@BindingMethods({
+        @BindingMethod(
+                type = Guideline.class,
+                attribute = "app:layout_constraintGuide_percent",
+                method = "setGuidelinePercent")
+})
 public class MainActivity extends AppCompatActivity {
     Context mContext;
 
@@ -38,16 +55,19 @@ public class MainActivity extends AppCompatActivity {
         mContext = this.getApplicationContext();
         fillUserDatabase();
 
-        setContentView(R.layout.activity_main);
+        //DataBindingUtil.setContentView(this, R.layout.activity_main);
+        ViewDataBinding v = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        //setContentView(R.layout.activity_main);
 
-        name = (EditText)findViewById(R.id.name);
-        password = (EditText)findViewById(R.id.password);
+        cardViewName = findViewById(R.id.tinputcard);
+        cardViewPassword = findViewById(R.id.tinputcard2);
+
+        name = (EditText)cardViewName.findViewById(R.id.input_card_text);
+        //javax.xml.bind.JAXBException e;
+        password = (EditText)cardViewPassword.findViewById(R.id.input_card_text);
         login = (Button)findViewById(R.id.login);
         signup = (Button)findViewById(R.id.signup);
         guestLogin = (Button)findViewById(R.id.guestLogin);
-
-        cardViewName = (CardView) findViewById(R.id.cardViewName);
-        cardViewPassword = (CardView) findViewById(R.id.cardViewPassword);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
