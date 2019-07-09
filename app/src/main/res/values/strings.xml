@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">BookNow</string>
     <string name="title">BookNow</string>
+    <string name="title_activity_idk">ActivityIDK</string>
 </resources>

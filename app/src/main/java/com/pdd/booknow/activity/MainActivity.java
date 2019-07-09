@@ -1,4 +1,4 @@
-package com.pdd.booknow;
+package com.pdd.booknow.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,23 +7,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.Guideline;
 import androidx.core.content.ContextCompat;
-import androidx.databinding.BindingAdapter;
 import androidx.databinding.BindingMethod;
 import androidx.databinding.BindingMethods;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 
 import android.os.Bundle;
-import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.pdd.booknow.R;
 import com.pdd.booknow.database.user.User;
 import com.pdd.booknow.database.user.UserDatabase;
-import com.pdd.booknow.widget.ScalableImageView;
-
-import java.util.HashMap;
 
 @BindingMethods({
         @BindingMethod(
@@ -84,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent activitySignup = new Intent(MainActivity.this, ActivitySignup.class);
+                Intent activitySignup = new Intent(MainActivity.this, ActivityIDK.class);
                 startActivity(activitySignup);
             }
         });

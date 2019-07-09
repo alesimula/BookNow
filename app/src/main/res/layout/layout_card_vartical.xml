@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="android.view.View"/>
+
+        <variable name="title" type="java.lang.String"/>
+        <variable name="desc" type="java.lang.String"/>
+        <variable name="image" type="android.graphics.drawable.Drawable" />
+        <variable name="contentMarginPercent" type="Float"/>
+        <variable name="imageAspectRatio" type="Double"/>
+        <variable name="marginHorizontal" type="int"/>
+        <variable name="marginVertical" type="int"/>
+    </data>
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@{marginHorizontal}"
+        android:layout_marginVertical="@{marginVertical}"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        app:cardCornerRadius="10sp"
+        app:cardElevation="6dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:orientation="horizontal">
+
+            <com.pdd.booknow.widget.ScalableImageView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:visibility="invisible"
+                app:aspectRatio="4:1"
+                app:fixedScale="width"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/layout_card_margin_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.025" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/layout_card_margin_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.975" />
+
+            <com.pdd.booknow.widget.ScalableImageView
+                android:id="@+id/layout_card_square_bottom"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="invisible"
+                app:aspectRatio="1"
+                app:fixedScale="width"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/layout_card_margin_left" />
+
+            <com.pdd.booknow.widget.ScalableImageView
+                android:id="@+id/layout_card_square_top"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                app:aspectRatio="1"
+                app:fixedScale="width"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/layout_card_margin_left" />
+
+            <com.pdd.booknow.widget.ScalableImageView
+                android:id="@+id/layout_card_square_corner_start"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:visibility="invisible"
+                app:aspectRatio="1"
+                app:fixedScale="height"
+                app:relativeAspectRatio="false"
+                app:layout_constraintTop_toBottomOf="@id/layout_card_square_top"
+                app:layout_constraintBottom_toTopOf="@id/layout_card_square_bottom"
+                app:layout_constraintStart_toEndOf="@id/layout_card_square_top"/>
+
+            <!--android:tint="@color/colorAccent"
+            app:srcCompat="@{cardimg}" />-->
+
+            <com.pdd.booknow.widget.ScalableImageView
+                android:id="@+id/layout_card_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:foregroundGravity="center"
+                android:scaleType="centerCrop"
+                app:aspectRatio="1"
+                app:fixedScale="height"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                app:relativeAspectRatio="false"
+                app:srcCompat="@{image}" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@id/layout_card_square_bottom"
+                app:layout_constraintEnd_toEndOf="@id/layout_card_margin_right"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@id/layout_card_square_corner_start"
+                app:layout_constraintTop_toBottomOf="@id/layout_card_square_top"
+                app:layout_constraintVertical_bias="0.0">
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/layout_card_internal_separator_first"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent="0.34" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/layout_card_internal_separator_second"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent="0.67" />
+
+                <LinearLayout
+                    android:id="@+id/linearLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/layout_card_internal_separator_second">
+
+                    <com.pdd.booknow.widget.ScalableImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:tint="@color/colorHint"
+                        app:aspectRatio="1"
+                        app:fixedScale="height"
+                        app:relativeAspectRatio="false"
+                        app:srcCompat="@drawable/ic_menu_rating">
+                    </com.pdd.booknow.widget.ScalableImageView>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:lines="1"
+                        android:text="2"
+                        app:autoSizeTextType="uniform">
+                    </androidx.appcompat.widget.AppCompatTextView>
+                </LinearLayout>
+
+                <com.pdd.booknow.widget.AutoResizeTextView
+                    android:id="@+id/autoResizeTextView2"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:gravity="center_vertical"
+                    android:lines="1"
+                    android:text="Sformatini agli spinaci"
+                    android:textColor="@color/colorAccent"
+                    app:layout_constraintBottom_toTopOf="@+id/layout_card_internal_separator_first"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0">
+                </com.pdd.booknow.widget.AutoResizeTextView>
+
+                <com.pdd.booknow.widget.AutoResizeTextView
+                    android:id="@+id/autoResizeTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:gravity="center_vertical"
+                    android:lines="1"
+                    android:text="Time: 5 min"
+                    app:layout_constraintBottom_toTopOf="@+id/layout_card_internal_separator_second"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/layout_card_internal_separator_first">
+                </com.pdd.booknow.widget.AutoResizeTextView>
+
+                <com.pdd.booknow.widget.AutoResizeTextView
+                    android:id="@+id/autoResizeTextView3"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:gravity="center_vertical"
+                    android:lines="1"
+                    android:text="Price: $3"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/linearLayout"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/layout_card_internal_separator_second">
+                </com.pdd.booknow.widget.AutoResizeTextView>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

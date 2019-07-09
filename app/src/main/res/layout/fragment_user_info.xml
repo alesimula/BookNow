@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="android.view.View"/>
+
+        <variable name="user" type="com.pdd.booknow.activity.ActivityIDK.User"/>
+    </data>
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardCornerRadius="10sp"
+        app:cardElevation="6dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:orientation="horizontal">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/layout_card_margin_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.05" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/layout_card_margin_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.95" />
+
+            <com.pdd.booknow.widget.ScalableImageView
+                android:id="@+id/layout_card_square_bottom"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="invisible"
+                app:aspectRatio="1"
+                app:fixedScale="width"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/layout_card_margin_left" />
+
+            <com.pdd.booknow.widget.ScalableImageView
+                android:id="@+id/layout_card_square_top"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="invisible"
+                app:aspectRatio="1"
+                app:fixedScale="width"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/layout_card_margin_left" />
+
+            <!--android:tint="@color/colorAccent"
+            app:srcCompat="@{cardimg}" />-->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@id/layout_card_square_bottom"
+                app:layout_constraintStart_toEndOf="@id/layout_card_margin_left"
+                app:layout_constraintEnd_toEndOf="@id/layout_card_margin_right"
+                app:layout_constraintTop_toBottomOf="@id/layout_card_square_top">
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:orientation="horizontal">
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/user_icon_size_percent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_percent="0.15" />
+
+                    <com.pdd.booknow.widget.ScalableImageView
+                        android:id="@+id/user_icon"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:foregroundGravity="center"
+                        android:scaleType="centerCrop"
+                        app:aspectRatio="1"
+                        app:relativeAspectRatio="false"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="@id/user_icon_size_percent"
+                        app:srcCompat="@{user.icon}"
+                        app:fixedScale="width"/>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:gravity="center_vertical"
+                        android:lines="1"
+                        android:layout_marginLeft="8sp"
+                        android:text="@{user.name}"
+                        app:layout_constraintStart_toEndOf="@id/user_icon"
+                        app:layout_constraintTop_toTopOf="@id/user_icon"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintBottom_toBottomOf="@id/user_icon"
+                        app:autoSizeTextType="uniform"/>
+                    <com.pdd.booknow.widget.ScalableImageView
+                        android:id="@+id/user_spacing"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:visibility="invisible"
+                        app:aspectRatio="3"
+                        app:layout_constraintTop_toBottomOf="@id/user_icon"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="@id/user_icon_size_percent"
+                        app:fixedScale="width"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.core.widget.NestedScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scrollbarStyle="outsideOverlay">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <include layout="@layout/layout_editable_info"
+                            app:text="@{&quot;Luiggi&quot;}"
+                            app:image="@{@drawable/ic_account_username}"
+                            />
+                        <include layout="@layout/layout_editable_info"
+                            app:text="@{&quot;luiggi@hotmail.com&quot;}"
+                            app:image="@{@drawable/ic_account_mail}"
+                            />
+                        <include layout="@layout/layout_editable_info"
+                            app:text="@{&quot;1234&quot;}"
+                            app:editing="@{true}"
+                            app:image="@{@drawable/ic_account_password}"
+                            />
+                        <include layout="@layout/layout_editable_info"
+                            app:text="@{&quot;8569************&quot;}"
+                            app:image="@{@drawable/ic_account_credit}"
+                            />
+
+                    </LinearLayout>
+                </androidx.core.widget.NestedScrollView>
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/toolbar_coupon"
+        android:icon="@drawable/ic_toolbar_coupon"
+        app:showAsAction="always"
+        android:title="Coupon">
+    </item>
+    <item
+        android:id="@+id/toolbar_cart"
+        android:icon="@drawable/ic_toolbar_cart"
+        app:showAsAction="always"
+        android:title="Cart">
+    </item>
+    <item
+        android:id="@+id/toolbar_profile"
+        android:icon="@drawable/ic_user_default"
+        app:showAsAction="always"
+        android:title="Profile">
+    </item>
+</menu>

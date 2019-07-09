@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.pdd.booknow">
 
     <application
         android:allowBackup="true"
+        android:name=".BaseApplication"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:hardwareAccelerated="true"
+        android:theme="@style/AppTheme"
+        tools:replace="android:icon">
         <activity
-            android:name="com.pdd.booknow.MainActivity"
+            android:name=".activity.ActivityIDK"
+            android:label="@string/title_activity_idk"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".activity.MainActivity"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,8 +27,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.pdd.booknow.ShowResults"></activity>
-        <activity android:name="com.pdd.booknow.ActivitySignup"></activity>
+        <activity android:name=".activity.ShowResults" />
+        <activity android:name=".activity.ActivitySignup" />
     </application>
 
 </manifest>

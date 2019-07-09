@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+    <data>
+        <import type="android.view.View"/>
+
+        <variable name="editing" type="boolean"/>
+        <variable name="text" type="java.lang.String"/>
+        <variable name="image" type="android.graphics.drawable.Drawable" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/info_margin_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.1" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/info_margin_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.9" />
+
+        <com.pdd.booknow.widget.ScalableImageView
+            android:id="@+id/editable_info_topper"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            app:aspectRatio="4"
+            app:fixedScale="width"
+            app:layout_constraintEnd_toEndOf="@id/info_margin_left"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <com.pdd.booknow.widget.ScalableImageView
+            android:id="@+id/editable_info_bottom"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            app:aspectRatio="4"
+            app:fixedScale="width"
+            app:layout_constraintEnd_toEndOf="@id/info_margin_left"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/editable_info_icon"/>
+
+        <com.pdd.booknow.widget.ScalableImageView
+            android:id="@+id/editable_info_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:tint="@color/colorHint"
+            android:foregroundGravity="center"
+            app:aspectRatio="1"
+            app:relativeAspectRatio="false"
+            app:fixedScale="height"
+            app:layout_constraintBottom_toBottomOf="@id/info_edit_text"
+            app:layout_constraintStart_toEndOf="@id/info_margin_left"
+            app:layout_constraintTop_toTopOf="@id/info_edit_text"
+            app:srcCompat="@{image}" />
+
+        <com.pdd.booknow.widget.ScalableImageView
+            android:id="@+id/editable_info_gap"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:visibility="invisible"
+            app:aspectRatio="1:2"
+            app:fixedScale="height"
+            app:layout_constraintBottom_toBottomOf="@id/editable_info_icon"
+            app:layout_constraintStart_toEndOf="@id/editable_info_icon"
+            app:layout_constraintTop_toTopOf="@id/editable_info_icon"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/info_edit_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{text}"
+            android:ellipsize="end"
+            android:textSize="23sp"
+            android:visibility="@{editing ? View.INVISIBLE : View.VISIBLE}"
+            android:lines="1"
+            app:layout_constraintTop_toBottomOf="@id/editable_info_topper"
+            app:layout_constraintStart_toEndOf="@id/editable_info_gap"
+            app:layout_constraintEnd_toEndOf="@id/info_margin_right">
+        </androidx.appcompat.widget.AppCompatTextView>
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/info_edit_text_edit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:background="@android:color/transparent"
+            android:text="@{text}"
+            android:textSize="23sp"
+            android:maxLines="1"
+            android:visibility="@{editing ? View.VISIBLE : View.GONE}"
+            app:layout_constraintTop_toBottomOf="@id/editable_info_topper"
+            app:layout_constraintStart_toEndOf="@id/editable_info_gap"
+            app:layout_constraintEnd_toEndOf="@id/info_margin_right">
+        </androidx.appcompat.widget.AppCompatEditText>
+
+        <com.pdd.booknow.widget.ScalableImageView
+            android:id="@+id/editable_info_edit_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:foregroundGravity="center"
+            android:visibility="@{editing ? View.GONE : View.VISIBLE}"
+            app:aspectRatio="1"
+            app:fixedScale="height"
+            app:layout_constrainedWidth="false"
+            app:layout_constraintBottom_toBottomOf="@id/info_edit_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.75"
+            app:layout_constraintStart_toStartOf="@id/info_margin_right"
+            app:layout_constraintTop_toTopOf="@id/info_edit_text"
+            app:relativeAspectRatio="false"
+            app:srcCompat="@drawable/ic_actions_edit" />
+
+        <com.pdd.booknow.widget.ScalableImageView
+            android:id="@+id/editable_info_confirm_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:foregroundGravity="center"
+            android:visibility="@{editing ? View.VISIBLE : View.GONE}"
+            app:aspectRatio="1"
+            app:fixedScale="height"
+            app:layout_constrainedWidth="false"
+            app:layout_constraintBottom_toBottomOf="@id/info_edit_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.75"
+            app:layout_constraintStart_toStartOf="@id/info_margin_right"
+            app:layout_constraintTop_toTopOf="@id/info_edit_text"
+            app:relativeAspectRatio="false"
+            app:srcCompat="@drawable/ic_actions_confirm" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

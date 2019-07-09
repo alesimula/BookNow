@@ -1,4 +1,4 @@
-package com.pdd.booknow;
+package com.pdd.booknow.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.pdd.booknow.R;
 import com.pdd.booknow.database.user.User;
 
 import java.io.Serializable;

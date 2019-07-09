@@ -1,4 +1,4 @@
-package com.pdd.booknow;
+package com.pdd.booknow.fragment;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
