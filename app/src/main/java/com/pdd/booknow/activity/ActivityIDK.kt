@@ -14,17 +14,43 @@ import com.pdd.booknow.Utilities
 import com.pdd.booknow.mindimPixels
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.pdd.booknow.databinding.*
 import com.pdd.booknow.fragment.DataBindingDialogFragment
 import kotlinx.android.synthetic.main.fragment_menu_main.*
+import java.io.Serializable
 
+typealias Food = ActivityIDK.FoodType.Food
 
 class ActivityIDK : AppCompatActivity() {
-    class FoodType(val name: String, resId: Int) {
+    class FoodType(val name: String, private var resId: Int, vararg foods: Food) {
+        private companion object {
+            @JvmStatic val ICON_EMPTY = ColorDrawable(Color.TRANSPARENT)
+        }
+
         val image by lazy {ResourcesCompat.getDrawable(Utilities.resources, resId, null)}
+        val food by lazy {FoodList().apply {addAll(foods)}}
+
+        class Food(val name: String="", private var resId: Int?=null, val price: Double = 4.89, val time: Int = 3, val rating: Int = 0) : Serializable {
+            private val mImage by lazy {ResourcesCompat.getDrawable(Utilities.resources, resId!!, null)}
+            val image; get() = runCatching {mImage}.getOrElse {ICON_EMPTY}
+            fun setImage(resId: Int) {this.resId = resId}
+        }
+
+        inner class FoodList : ArrayList<Food>() {
+            val name; get() = this@FoodType.name
+            private fun Food.setImage() = apply {if (image === ICON_EMPTY) setImage(resId)}
+            private fun Collection<Food>.setImage() = onEach {it.setImage()}
+
+            override fun add(element: Food) = super.add(element.setImage())
+            override fun add(index: Int, element: Food) = super.add(index, element.setImage())
+            override fun addAll(elements: Collection<Food>) = super.addAll(elements.setImage())
+            override fun addAll(index: Int, elements: Collection<Food>) = super.addAll(index, elements.setImage())
+        }
     }
 
     class User(val name: String, iconId: Int) {
@@ -88,7 +114,15 @@ class ActivityIDK : AppCompatActivity() {
 
         override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
             val menuList = arrayListOf<FoodType>()
-            menuList.add(FoodType("Starters", R.drawable.ic_food_starters))
+            menuList.add(FoodType("Starters", R.drawable.ic_food_starters,
+                    Food("Marinara meatballs", R.drawable.ic_starters_marinara_meatballs),
+                    Food("Shrimp cocktail", R.drawable.ic_starters_cocktail_shrimp),
+                    Food("Mozzarella in Carrozza", R.drawable.ic_starters_mozzarella_in_carrozza),
+                    Food("Hummus", R.drawable.ic_starters_hummus),
+                    Food("Rice supplì", R.drawable.ic_starters_rice_suppli),
+                    Food("Zucchini flowers", R.drawable.ic_starters_zucchini_flowers),
+                    Food("Puff pastry Pizza", R.drawable.ic_puff_pastry_pizza)
+            ))
             menuList.add(FoodType("First course", R.drawable.ic_food_first_course))
             menuList.add(FoodType("Main course", R.drawable.ic_food_main_course))
             menuList.add(FoodType("Pizza", R.drawable.ic_food_pizza))
@@ -96,7 +130,11 @@ class ActivityIDK : AppCompatActivity() {
             menuList.add(FoodType("Side dishes", R.drawable.ic_food_side_dishes))
             menuList.add(FoodType("Fruit", R.drawable.ic_food_fruit))
             menuList.add(FoodType("Desserts", R.drawable.ic_food_dessert))
-            menuList.add(FoodType("Drinks", R.drawable.ic_food_drinks))
+            menuList.add(FoodType("Drinks", R.drawable.ic_food_drinks,
+                    Food("Coke", R.drawable.ic_drinks_coke),
+                    Food("Sprite", R.drawable.ic_drinks_sprite),
+                    Food("Beer", R.drawable.ic_drinks_fanta)
+            ))
 
             val inflater1 = GridLayoutManager(context, if (Utilities.isPortrait()) 2 else 3)
             val adapter = object : DataBindingAdapter<LayoutCardBinding, FoodType>(menuList, LayoutCardBinding::class) {
@@ -106,10 +144,11 @@ class ActivityIDK : AppCompatActivity() {
                     binding.image = image
                     binding.imageAspectRatio = 1.0
                     binding.title = name
-                    onClick {
+                    onClick {element ->
                         activity!!.supportFragmentManager.beginTransaction().apply {
                             setCustomAnimations(R.anim.slide_in_up, R.anim.slide_out_up, R.anim.slide_in_down, R.anim.slide_out_down)
-                            replace(R.id.fragment_container, FragmentMenuCategory())
+                            val args = Bundle().apply {putSerializable("list", element.food)}
+                            replace(R.id.fragment_container, FragmentMenuCategory().apply {arguments = args})
                             addToBackStack(null)
                         }.commit()
                     }
@@ -123,39 +162,27 @@ class ActivityIDK : AppCompatActivity() {
     }
 
     class FragmentMenuCategory : Fragment() {
-        override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) = FragmentMenuMainBinding.inflate(inflater).apply {
-            title = "Primi"
+        val menuList by lazy {arguments?.getSerializable("list") as FoodType.FoodList}
+
+        override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) = FragmentMenuCategoryBinding.inflate(inflater).apply {
+            title = menuList.name
             paddingHorizontal = Utilities.scale(resources.displayMetrics.mindimPixels,0.03)
             paddingVertical = paddingHorizontal
         }.let {it.root}
 
         override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-            val menuList = arrayListOf<FoodType>()
-            menuList.add(FoodType("Starters", R.drawable.ic_food_starters))
-            menuList.add(FoodType("First course", R.drawable.ic_food_first_course))
-            menuList.add(FoodType("Main course", R.drawable.ic_food_main_course))
-            menuList.add(FoodType("Pizza", R.drawable.ic_food_pizza))
-            menuList.add(FoodType("Burgers", R.drawable.ic_food_burgers))
-            menuList.add(FoodType("Side dishes", R.drawable.ic_food_side_dishes))
-            menuList.add(FoodType("Fruit", R.drawable.ic_food_fruit))
-            menuList.add(FoodType("Desserts", R.drawable.ic_food_dessert))
-            menuList.add(FoodType("Drinks", R.drawable.ic_food_drinks))
-
             val inflater1 = LinearLayoutManager(context)
-            val adapter = object : DataBindingAdapter<LayoutCardVarticalBinding, FoodType>(menuList, LayoutCardVarticalBinding::class) {
-                override fun FoodType.bind(binding: LayoutCardVarticalBinding) {
+            val adapter = object : DataBindingAdapter<LayoutCardHorizontalBinding, Food>(menuList, LayoutCardHorizontalBinding::class) {
+                override fun Food.bind(binding: LayoutCardHorizontalBinding) {
                     binding.marginHorizontal = Utilities.scale(resources.displayMetrics.mindimPixels,0.03)
                     binding.marginVertical = binding.marginHorizontal
+                    binding.aspectRatio = 4.0
+                    binding.name = name
                     binding.image = image
-                    binding.imageAspectRatio = 1.0
-                    binding.title = name
-                    onClick {
-                        activity!!.supportFragmentManager.beginTransaction().apply {
-                            setCustomAnimations(R.anim.slide_in_up, R.anim.slide_out_up, R.anim.slide_in_down, R.anim.slide_out_down)
-                            replace(R.id.fragment_container, FragmentMenuMain())
-                            addToBackStack(null)
-                        }.commit()
-                    }
+                    binding.price = price
+                    binding.timeMinutes = time
+                    binding.ratingStars = rating
+                    onClick {}
                 }
             }
 

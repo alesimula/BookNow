@@ -7,6 +7,8 @@
 
     <dimen name="recyclerview_margin_left" format="float">0</dimen>
     <dimen name="recyclerview_margin_right" format="float">1</dimen>
+    <dimen name="recyclerview_rescale_margin_left" format="float">0</dimen>
+    <dimen name="recyclerview_rescale_margin_right" format="float">1</dimen>
 
     <dimen name="activity_main_user_up" format="float">0.15</dimen>
     <dimen name="activity_main_user_down" format="float">0.25</dimen>

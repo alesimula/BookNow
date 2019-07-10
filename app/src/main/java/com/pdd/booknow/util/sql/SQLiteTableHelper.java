@@ -178,7 +178,8 @@ public abstract class SQLiteTableHelper {
         }
         catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
             e.printStackTrace(System.err);
-            throw new RuntimeException("Failed to hash password");
+            //throw new RuntimeException("Failed to hash password");
+            return new BigInteger("0");
         }
     }
     public static BigInteger encodePassword(String password) {

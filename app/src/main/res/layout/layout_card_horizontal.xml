@@ -6,11 +6,13 @@
     <data>
         <import type="android.view.View"/>
 
-        <variable name="title" type="java.lang.String"/>
-        <variable name="desc" type="java.lang.String"/>
+        <variable name="name" type="java.lang.String"/>
+        <variable name="timeMinutes" type="int"/>
+        <variable name="ratingStars" type="int"/>
+        <variable name="price" type="double"/>
         <variable name="image" type="android.graphics.drawable.Drawable" />
         <variable name="contentMarginPercent" type="Float"/>
-        <variable name="imageAspectRatio" type="Double"/>
+        <variable name="aspectRatio" type="double"/>
         <variable name="marginHorizontal" type="int"/>
         <variable name="marginVertical" type="int"/>
     </data>
@@ -35,7 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:visibility="invisible"
-                app:aspectRatio="4:1"
+                app:aspectRatio="@{aspectRatio}"
                 app:fixedScale="width"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -153,7 +155,7 @@
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:lines="1"
-                        android:text="2"
+                        android:text="@{ratingStars>0 ? (ratingStars>5 ? `5` : ``+ratingStars) : `?`+` `}"
                         app:autoSizeTextType="uniform">
                     </androidx.appcompat.widget.AppCompatTextView>
                 </LinearLayout>
@@ -164,7 +166,7 @@
                     android:layout_height="0dp"
                     android:gravity="center_vertical"
                     android:lines="1"
-                    android:text="Sformatini agli spinaci"
+                    android:text="@{name}"
                     android:textColor="@color/colorAccent"
                     app:layout_constraintBottom_toTopOf="@+id/layout_card_internal_separator_first"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -180,7 +182,7 @@
                     android:layout_height="0dp"
                     android:gravity="center_vertical"
                     android:lines="1"
-                    android:text="Time: 5 min"
+                    android:text="@{`Time: `+timeMinutes+` min`}"
                     app:layout_constraintBottom_toTopOf="@+id/layout_card_internal_separator_second"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -193,7 +195,7 @@
                     android:layout_height="0dp"
                     android:gravity="center_vertical"
                     android:lines="1"
-                    android:text="Price: $3"
+                    android:text="@{`Price: $`+(``+(price+0.005)).replaceAll(`([.].{2}).*$`, `$1`)}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/linearLayout"
                     app:layout_constraintStart_toStartOf="parent"

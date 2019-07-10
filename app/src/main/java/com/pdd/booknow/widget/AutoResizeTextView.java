@@ -5,6 +5,7 @@ import java.util.List;
 
 import android.content.Context;
 import android.graphics.Paint;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.TypedValue;
@@ -12,6 +13,7 @@ import android.view.ViewGroup.LayoutParams;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 
 import androidx.appcompat.widget.AppCompatTextView;
+import androidx.core.view.ViewCompat;
 
 /**
  * This class builds a new android Widget named AutoFitText which can be used instead of a TextView
@@ -83,7 +85,8 @@ public class AutoResizeTextView extends AppCompatTextView {
                 // make an initial call to onSizeChanged to make sure that refitText is triggered
                 onSizeChanged(AutoResizeTextView.this.getWidth(), AutoResizeTextView.this.getHeight(), 0, 0);
                 // Remove the LayoutListener immediately so we don't run into an infinite loop
-                AutoResizeTextView.this.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) AutoResizeTextView.this.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                else AutoResizeTextView.this.getViewTreeObserver().removeGlobalOnLayoutListener(this);
             }
         });
     }
@@ -214,7 +217,7 @@ public class AutoResizeTextView extends AppCompatTextView {
             List<String> words = new ArrayList<String>();
 
             for (String s : text.split(" ")) {
-                Log.i("tag", "Word: " + s);
+                //Log.i("tag", "Word: " + s);
                 words.add(s);
             }
             for (String word : words) {
@@ -241,7 +244,7 @@ public class AutoResizeTextView extends AppCompatTextView {
     /**
      * This method receives a call upon a change in text content of the TextView. Unfortunately it
      * is also called - among others - upon text size change which means that we MUST NEVER CALL
-     * {@link #refitText(String)} from this method! Doing so would result in an endless loop that
+     * {@link #refitText(String, int, int)} from this method! Doing so would result in an endless loop that
      * would ultimately result in a stack overflow and termination of the application
      *
      * So for the time being this method does absolutely nothing. If you want to notify the view of
