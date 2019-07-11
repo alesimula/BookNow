@@ -131,9 +131,15 @@ class ActivityIDK : AppCompatActivity() {
             menuList.add(FoodType("Fruit", R.drawable.ic_food_fruit))
             menuList.add(FoodType("Desserts", R.drawable.ic_food_dessert))
             menuList.add(FoodType("Drinks", R.drawable.ic_food_drinks,
+                    Food("Water (still)", R.drawable.ic_drinks_water),
+                    Food("Water (sparkling)", R.drawable.ic_drinks_water_sparkling),
                     Food("Coke", R.drawable.ic_drinks_coke),
                     Food("Sprite", R.drawable.ic_drinks_sprite),
-                    Food("Beer", R.drawable.ic_drinks_fanta)
+                    Food("Fanta", R.drawable.ic_drinks_fanta),
+                    Food("Red wine", R.drawable.ic_drinks_wine_red),
+                    Food("White wine", R.drawable.ic_drinks_wine_white),
+                    Food("Beer", R.drawable.ic_drinks_beer),
+                    Food("Root beer", R.drawable.ic_drinks_root_beer)
             ))
 
             val inflater1 = GridLayoutManager(context, if (Utilities.isPortrait()) 2 else 3)
