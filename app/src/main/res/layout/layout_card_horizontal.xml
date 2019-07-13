@@ -7,6 +7,7 @@
         <import type="android.view.View"/>
 
         <variable name="name" type="java.lang.String"/>
+        <variable name="quantity" type="int"/>
         <variable name="timeMinutes" type="int"/>
         <variable name="ratingStars" type="int"/>
         <variable name="price" type="double"/>
@@ -136,6 +137,7 @@
                     android:id="@+id/linearLayout"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
+                    android:visibility="@{quantity>0 ? View.INVISIBLE : View.VISIBLE}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/layout_card_internal_separator_second">
@@ -182,7 +184,7 @@
                     android:layout_height="0dp"
                     android:gravity="center_vertical"
                     android:lines="1"
-                    android:text="@{`Time: `+timeMinutes+` min`}"
+                    android:text="@{quantity>0 ? `Quantity: `+quantity : `Time: `+timeMinutes+` min`}"
                     app:layout_constraintBottom_toTopOf="@+id/layout_card_internal_separator_second"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -195,7 +197,7 @@
                     android:layout_height="0dp"
                     android:gravity="center_vertical"
                     android:lines="1"
-                    android:text="@{`Price: $`+(``+(price+0.005)).replaceAll(`([.].{2}).*$`, `$1`)}"
+                    android:text="@{`Price: $`+(``+((price*(quantity>1?quantity:1))+0.005)).replaceAll(`([.].{2}).*$`, `$1`)}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/linearLayout"
                     app:layout_constraintStart_toStartOf="parent"

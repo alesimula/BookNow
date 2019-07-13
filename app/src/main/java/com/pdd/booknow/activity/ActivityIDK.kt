@@ -23,6 +23,7 @@ import android.view.*
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.pdd.booknow.database.user.User
 import com.pdd.booknow.databinding.*
 import com.pdd.booknow.fragment.DataBindingDialogFragment
 import kotlinx.android.synthetic.main.fragment_menu_add.*
@@ -35,6 +36,19 @@ import java.io.ObjectOutputStream
 
 
 typealias Food = ActivityIDK.FoodType.Food
+
+object Restaurant {
+    @JvmStatic val toolbar_size by lazy {Utilities.context.theme.obtainStyledAttributes(intArrayOf(android.R.attr.actionBarSize)).let {typedArray ->
+        val size = typedArray.getDimension(0,TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 56f, Utilities.displayMetrics)); typedArray.recycle(); size.toInt()}
+    }
+    @JvmStatic val icon_size_toolbar by lazy {(toolbar_size * 0.7).toInt()}
+
+    val icon by lazy {ResourcesCompat.getDrawable(Utilities.resources, R.drawable.ic_restaurant, null)}
+    val icon_toolbar by lazy {icon?.apply{setBounds(0, 0, intrinsicWidth, intrinsicHeight)}?.let {icon ->
+        val bitmap = Bitmap.createBitmap(icon.intrinsicWidth, icon.intrinsicHeight, Bitmap.Config.ARGB_8888).apply {Canvas(this).apply {icon.draw(this)}}
+        BitmapDrawable(Utilities.resources, Bitmap.createScaledBitmap(bitmap, icon_size_toolbar, icon_size_toolbar, false))
+    }}
+}
 
 class ActivityIDK : AppCompatActivity() {
     class FoodType(val name: String, private var resId: Int, vararg foods: Food) {
@@ -80,7 +94,13 @@ class ActivityIDK : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
         R.id.toolbar_profile -> {
-            DataBindingDialogFragment.create<FragmentUserInfoBinding>(supportFragmentManager) { fragment ->
+            if (!logged) {
+                val showResults = Intent(this@ActivityIDK, MainActivity::class.java)
+                //showResults.putExtra(EXTRA_USER, User())
+                startActivity(showResults)
+                true
+            }
+            else DataBindingDialogFragment.create<FragmentUserInfoBinding>(supportFragmentManager) { fragment ->
                 user = User("Luiggi", R.drawable.ic_user_default)
                 fragment.onShow {dialog->
                     //dialog.setCanceledOnTouchOutside(false)
@@ -96,13 +116,16 @@ class ActivityIDK : AppCompatActivity() {
         else -> super.onOptionsItemSelected(item)
     }
 
+    var logged = false
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menu_toolbar.inflateMenu(R.menu.menu_user)
+        menu_toolbar.inflateMenu(if (logged) R.menu.menu_user else R.menu.menu_guest)
         return super.onCreateOptionsMenu(menu)
     }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        logged = runCatching {intent?.extras?.getBoolean("logged")?:false}.getOrDefault(false)
         super.onCreate(savedInstanceState)
         val binding : ActivityBohBinding = DataBindingUtil.setContentView(this, R.layout.activity_boh)
         //menu_toolbar.inflateMenu(R.menu.menu_user)
@@ -110,7 +133,7 @@ class ActivityIDK : AppCompatActivity() {
 
         if (savedInstanceState==null) supportFragmentManager.beginTransaction().add(R.id.fragment_container, FragmentMenuMain()).commit()
 
-        val user = User("Table n. 5", R.drawable.ic_user_default)
+        val user = User("Table n. 5", R.drawable.ic_restaurant)
 
         binding.user = user
 
@@ -206,6 +229,7 @@ class ActivityIDK : AppCompatActivity() {
                     onClick {element ->
                         DataBindingDialogFragment.create<FragmentMenuAddBinding>(activity!!.supportFragmentManager) { fragment ->
                             food = element
+                            quantity = 1
                             fragment.onShow {dialog->
                                 //dialog.setCanceledOnTouchOutside(false)
                             }
@@ -214,7 +238,7 @@ class ActivityIDK : AppCompatActivity() {
                                     quantity++
                                 }
                                 button_selection_remove.setOnClickListener {
-                                    if (quantity>0) quantity--
+                                    if (quantity>1) quantity--
                                 }
                             }
                         }

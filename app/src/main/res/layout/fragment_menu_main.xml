@@ -119,9 +119,51 @@
                     android:orientation="vertical"
                     app:layout_constraintGuide_percent="@dimen/recyclerview_margin_right" />
 
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/button_recent"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@{paddingHorizontal*2}"
+                    android:layout_marginLeft="@{paddingHorizontal*2}"
+                    android:layout_marginTop="@{paddingHorizontal*2}"
+                    android:layout_marginBottom="@{paddingHorizontal}"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/margin_left"
+                    app:layout_constraintEnd_toEndOf="@id/margin_right"
+                    app:cardCornerRadius="1000dp"
+                    app:cardElevation="4dp">
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textSize="34sp"
+                        android:text="Recent"/>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/button_offers"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@{paddingHorizontal*2}"
+                    android:layout_marginLeft="@{paddingHorizontal*2}"
+                    android:layout_marginTop="@{paddingHorizontal*2}"
+                    app:layout_constraintTop_toBottomOf="@id/button_recent"
+                    app:layout_constraintStart_toStartOf="@id/margin_left"
+                    app:layout_constraintEnd_toEndOf="@id/margin_right"
+                    app:cardCornerRadius="1000dp"
+                    app:cardElevation="4dp">
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textSize="34sp"
+                        android:text="Today's offers"/>
+                </com.google.android.material.card.MaterialCardView>
+
                 <androidx.core.widget.NestedScrollView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/button_offers"
                     app:layout_constraintEnd_toEndOf="@id/margin_right"
                     app:layout_constraintStart_toStartOf="@id/margin_left">
 

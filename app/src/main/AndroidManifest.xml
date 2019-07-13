@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.pdd.booknow">
 
+    <uses-permission android:name="android.permission.VIBRATE"/>
+
     <application
         android:name=".BaseApplication"
         android:allowBackup="true"
@@ -17,15 +19,16 @@
         <activity
             android:name=".activity.ActivityIDK"
             android:label="@string/title_activity_idk"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".activity.MainActivity"
-            android:windowSoftInputMode="adjustPan">
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.MainActivity"
+            android:windowSoftInputMode="adjustPan">
         </activity>
         <activity android:name=".activity.ShowResults" />
         <activity android:name=".activity.ActivitySignup" />

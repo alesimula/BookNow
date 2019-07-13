@@ -41,6 +41,7 @@ class ActivityCart : AppCompatActivity() {
                 binding.name = name
                 binding.image = image
                 binding.price = price
+                binding.quantity = 2
                 binding.timeMinutes = time
                 binding.ratingStars = rating
                 onClick {}

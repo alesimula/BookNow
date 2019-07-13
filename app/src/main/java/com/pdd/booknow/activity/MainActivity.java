@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void fillUserDatabase() {
         User.add(mContext, "admin@booknow.com", "administrator", "admin01");
+        User.add(mContext, "luiggi@hotmail.com", "luiggi", "luigi01");
         try {
             User admin = User.get(mContext,"admin@booknow.com", "admin01");
             admin.setName(mContext, "Adminolfi");
@@ -76,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
                 user = login();
                 if (user!=null) {
                     Intent showResults = new Intent(MainActivity.this, ActivityIDK.class);
-                    showResults.putExtra(EXTRA_USER, user);
+                    showResults.putExtra("logged", true);
                     startActivity(showResults);
                 }
             }
