@@ -3,6 +3,7 @@ package com.pdd.booknow.activity;
 import android.content.Context;
 import android.content.Intent;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.Guideline;
@@ -18,6 +19,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.pdd.booknow.R;
+import com.pdd.booknow.Utilities;
 import com.pdd.booknow.database.user.User;
 import com.pdd.booknow.database.user.UserDatabase;
 
@@ -49,6 +51,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mContext = this.getApplicationContext();
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar!=null) actionBar.setTitle("Login");
+        if (Utilities.INSTANCE.isLandscape() && actionBar!=null) actionBar.hide();
         fillUserDatabase();
 
         //DataBindingUtil.setContentView(this, R.layout.activity_main);

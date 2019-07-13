@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.pdd.booknow">
 
     <application
-        android:allowBackup="true"
         android:name=".BaseApplication"
+        android:allowBackup="true"
+        android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:hardwareAccelerated="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
+        <activity android:name=".activity.ActivityCart"></activity>
         <activity
             android:name=".activity.ActivityIDK"
             android:label="@string/title_activity_idk"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.MainActivity"
             android:windowSoftInputMode="adjustPan">

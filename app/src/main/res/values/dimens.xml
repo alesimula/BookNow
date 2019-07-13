@@ -5,6 +5,9 @@
     <dimen name="form_margin_title_left" format="float">0.25</dimen>
     <dimen name="form_margin_title_right" format="float">0.75</dimen>
 
+    <dimen name="cart_margin_left" format="float">0.05</dimen>
+    <dimen name="cart_margin_right" format="float">0.95</dimen>
+
     <dimen name="recyclerview_margin_left" format="float">0</dimen>
     <dimen name="recyclerview_margin_right" format="float">1</dimen>
     <dimen name="recyclerview_rescale_margin_left" format="float">0</dimen>

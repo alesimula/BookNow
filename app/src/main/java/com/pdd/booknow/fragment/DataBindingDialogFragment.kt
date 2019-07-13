@@ -5,7 +5,9 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.appcompat.app.AlertDialog
@@ -73,6 +75,11 @@ class DataBindingDialogFragment<B : ViewDataBinding> @JvmOverloads constructor(p
         this.onShow = block
     }
 
+    private var onCreateView: (View.(Dialog)->Unit)? = null
+    fun onCreateView(block: View.(Dialog)->Unit) {
+        this.onCreateView = block
+    }
+
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         onRestoreInstance(savedInstanceState)
         if (kotlin.runCatching{binding}.isFailure) return Dialog(context)
@@ -89,8 +96,12 @@ class DataBindingDialogFragment<B : ViewDataBinding> @JvmOverloads constructor(p
             }.let {setView(it)}
         }.create().apply {
             setOnShowListener {
+                Log.e("AAAAA", "onshow")
                 bind?.invoke(binding, this@DataBindingDialogFragment)
                 onShow?.invoke(this@DataBindingDialogFragment, dialog)
+                window.decorView.apply {
+                    onCreateView?.invoke(this, dialog)
+                }
                 window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE or WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM)
                 window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE)
             }

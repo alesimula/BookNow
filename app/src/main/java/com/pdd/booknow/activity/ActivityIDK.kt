@@ -1,5 +1,6 @@
 package com.pdd.booknow.activity
 
+import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.util.TypedValue
@@ -16,13 +17,22 @@ import android.graphics.drawable.BitmapDrawable
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.Drawable
+import android.util.Log
 import android.view.*
+import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.pdd.booknow.databinding.*
 import com.pdd.booknow.fragment.DataBindingDialogFragment
+import kotlinx.android.synthetic.main.fragment_menu_add.*
+import kotlinx.android.synthetic.main.fragment_menu_add.button_selection_add
+import kotlinx.android.synthetic.main.fragment_menu_add.view.*
 import kotlinx.android.synthetic.main.fragment_menu_main.*
 import java.io.Serializable
+import java.io.ObjectInputStream
+import java.io.ObjectOutputStream
+
 
 typealias Food = ActivityIDK.FoodType.Food
 
@@ -36,8 +46,9 @@ class ActivityIDK : AppCompatActivity() {
         val food by lazy {FoodList().apply {addAll(foods)}}
 
         class Food(val name: String="", private var resId: Int?=null, val price: Double = 4.89, val time: Int = 3, val rating: Int = 0) : Serializable {
-            private val mImage by lazy {ResourcesCompat.getDrawable(Utilities.resources, resId!!, null)}
-            val image; get() = runCatching {mImage}.getOrElse {ICON_EMPTY}
+            @Transient
+            private var mImage : Drawable? = null
+            val image; get() = runCatching {mImage?:ResourcesCompat.getDrawable(Utilities.resources, resId!!, null)?.let {mImage=it; it}}.getOrElse {ICON_EMPTY}
             fun setImage(resId: Int) {this.resId = resId}
         }
 
@@ -76,6 +87,12 @@ class ActivityIDK : AppCompatActivity() {
                 }
             }
         }
+        R.id.toolbar_cart -> {
+            val activityCart = Intent(this, ActivityCart::class.java)
+            //activityCart.putExtra(EXTRA_USER, User())
+            startActivity(activityCart)
+            true
+        }
         else -> super.onOptionsItemSelected(item)
     }
 
@@ -96,8 +113,6 @@ class ActivityIDK : AppCompatActivity() {
         val user = User("Table n. 5", R.drawable.ic_user_default)
 
         binding.user = user
-        binding.paddingHorizontal = Utilities.scale(resources.displayMetrics.mindimPixels,0.03)
-        binding.paddingVertical = binding.paddingHorizontal
 
         /*fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
@@ -121,7 +136,7 @@ class ActivityIDK : AppCompatActivity() {
                     Food("Hummus", R.drawable.ic_starters_hummus),
                     Food("Rice supplì", R.drawable.ic_starters_rice_suppli),
                     Food("Zucchini flowers", R.drawable.ic_starters_zucchini_flowers),
-                    Food("Puff pastry Pizza", R.drawable.ic_puff_pastry_pizza)
+                    Food("Puff pastry Pizza", R.drawable.ic_starters_puff_pastry_pizza)
             ))
             menuList.add(FoodType("First course", R.drawable.ic_food_first_course))
             menuList.add(FoodType("Main course", R.drawable.ic_food_main_course))
@@ -188,7 +203,22 @@ class ActivityIDK : AppCompatActivity() {
                     binding.price = price
                     binding.timeMinutes = time
                     binding.ratingStars = rating
-                    onClick {}
+                    onClick {element ->
+                        DataBindingDialogFragment.create<FragmentMenuAddBinding>(activity!!.supportFragmentManager) { fragment ->
+                            food = element
+                            fragment.onShow {dialog->
+                                //dialog.setCanceledOnTouchOutside(false)
+                            }
+                            fragment.onCreateView {
+                                button_selection_add.setOnClickListener {
+                                    quantity++
+                                }
+                                button_selection_remove.setOnClickListener {
+                                    if (quantity>0) quantity--
+                                }
+                            }
+                        }
+                    }
                 }
             }
 

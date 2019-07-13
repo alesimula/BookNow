@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable name="paddingHorizontal" type="int"/>
+        <variable name="paddingVertical" type="int"/>
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/margin_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="@dimen/form_margin_left" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/margin_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="@dimen/form_margin_right" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/margin_left_review"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="@dimen/cart_margin_left" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/margin_right_review"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="@dimen/cart_margin_right" />
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/margin_title_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="@dimen/form_margin_title_left" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/margin_title_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="@dimen/form_margin_title_right" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.02" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.11" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.89" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.87" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.97" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.7" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.73" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textView2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:lines="1"
+            android:text="Review order:"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintBottom_toTopOf="@+id/guideline8"
+            app:layout_constraintEnd_toStartOf="@+id/margin_title_right"
+            app:layout_constraintStart_toStartOf="@+id/margin_title_left"
+            app:layout_constraintTop_toTopOf="@+id/guideline1" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:cardBackgroundColor="@color/colorBackground"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="4dp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline13"
+            app:layout_constraintEnd_toStartOf="@+id/margin_right_review"
+            app:layout_constraintStart_toStartOf="@+id/margin_left_review"
+            app:layout_constraintTop_toBottomOf="@+id/textView2">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/cart_review_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:paddingLeft="@{paddingHorizontal}"
+                android:paddingTop="@{paddingVertical}"
+                android:paddingRight="@{paddingHorizontal}"
+                android:paddingBottom="@{paddingVertical}"
+                android:scrollbarStyle="outsideOverlay"
+                android:scrollbars="vertical"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintVertical_bias="0.0" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="4dp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline2"
+            app:layout_constraintEnd_toStartOf="@+id/margin_right"
+            app:layout_constraintStart_toStartOf="@+id/margin_left"
+            app:layout_constraintTop_toTopOf="@+id/guideline15">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline_review_first"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent="0.33" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline_review_second"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent="0.66" />
+
+                <com.pdd.booknow.widget.AutoResizeTextView
+                    android:id="@+id/autoResizeTextView5"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:gravity="center"
+                    android:text="Order: $6"
+                    app:layout_constraintBottom_toTopOf="@+id/guideline_review_first"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                </com.pdd.booknow.widget.AutoResizeTextView>
+
+                <com.pdd.booknow.widget.AutoResizeTextView
+                    android:id="@+id/autoResizeTextView4"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:gravity="center"
+                    android:text="Cover charge: $1"
+                    app:layout_constraintBottom_toTopOf="@+id/guideline_review_second"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/guideline_review_first"
+                    app:layout_constraintVertical_bias="1.0">
+
+                </com.pdd.booknow.widget.AutoResizeTextView>
+
+                <com.pdd.booknow.widget.AutoResizeTextView
+                    android:id="@+id/autoResizeTextView6"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:gravity="center"
+                    android:text="Total: $6"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/guideline_review_second"
+                    app:layout_constraintVertical_bias="1.0">
+
+                </com.pdd.booknow.widget.AutoResizeTextView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <Button
+            android:id="@+id/button8"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="Confirm"
+            android:background="@drawable/button_material_rounded"
+            app:layout_constraintBottom_toTopOf="@+id/guideline17"
+            app:layout_constraintEnd_toStartOf="@+id/margin_right"
+            app:layout_constraintStart_toStartOf="@+id/margin_left"
+            app:layout_constraintTop_toTopOf="@+id/guideline16" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

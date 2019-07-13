@@ -7,9 +7,7 @@
         <import type="android.view.View"/>
 
         <variable name="user" type="com.pdd.booknow.activity.ActivityIDK.User"/>
-        <variable name="hideTitleBar" type="boolean"/>
-        <variable name="paddingHorizontal" type="int"/>
-        <variable name="paddingVertical" type="int"/>
+        <!--variable name="hideTitleBar" type="boolean"/-->
     </data>
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
