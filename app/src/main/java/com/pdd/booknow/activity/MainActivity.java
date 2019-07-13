@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 user = login();
                 if (user!=null) {
-                    Intent showResults = new Intent(MainActivity.this, ShowResults.class);
+                    Intent showResults = new Intent(MainActivity.this, ActivityIDK.class);
                     showResults.putExtra(EXTRA_USER, user);
                     startActivity(showResults);
                 }
@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent activitySignup = new Intent(MainActivity.this, ActivityIDK.class);
+                Intent activitySignup = new Intent(MainActivity.this, ActivitySignup.class);
                 startActivity(activitySignup);
             }
         });
@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
         guestLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent showResults = new Intent(MainActivity.this, ShowResults.class);
+                Intent showResults = new Intent(MainActivity.this, ActivityIDK.class);
                 showResults.putExtra(EXTRA_USER, new User());
                 startActivity(showResults);
             }
