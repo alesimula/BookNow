@@ -161,7 +161,7 @@
         android:id="@+id/button8"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="Button"
+        android:text="Send"
         android:background="@drawable/button_material_rounded"
         app:layout_constraintBottom_toTopOf="@+id/guideline17"
         app:layout_constraintEnd_toStartOf="@+id/margin_right"
