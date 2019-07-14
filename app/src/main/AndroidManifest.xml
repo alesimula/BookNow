@@ -18,7 +18,6 @@
         <activity android:name=".activity.ActivityCart"></activity>
         <activity
             android:name=".activity.ActivityIDK"
-            android:label="@string/title_activity_idk"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -11,4 +11,6 @@
     <color name="colorBackgroundDarkError">#DAC8A4</color>
     <color name="colorCardBackground">#FBD17F</color>
     <color name="colorCardBackgroundError">#D9C9AC</color>
+
+    <color name="colorCardBackgroundSelected">#FDF0D7</color>
 </resources>

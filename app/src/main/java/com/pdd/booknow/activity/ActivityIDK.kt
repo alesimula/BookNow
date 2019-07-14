@@ -29,9 +29,11 @@ import com.pdd.booknow.database.user.User
 import com.pdd.booknow.databinding.*
 import com.pdd.booknow.fragment.DataBindingDialogFragment
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_coupon_redeem.view.*
 import kotlinx.android.synthetic.main.fragment_menu_add.*
 import kotlinx.android.synthetic.main.fragment_menu_add.button_selection_add
 import kotlinx.android.synthetic.main.fragment_menu_add.view.*
+import kotlinx.android.synthetic.main.fragment_menu_add.view.button_confirm
 import kotlinx.android.synthetic.main.fragment_menu_main.*
 import java.io.Serializable
 import java.io.ObjectInputStream
@@ -115,6 +117,29 @@ class ActivityIDK : AppCompatActivity() {
             val activityCart = Intent(this, ActivityCart::class.java)
             //activityCart.putExtra(EXTRA_USER, User())
             startActivity(activityCart)
+            true
+        }
+        R.id.toolbar_coupon -> {
+            DataBindingDialogFragment.create<FragmentCouponRedeemBinding>(supportFragmentManager) { fragment ->
+                //user = User("Luiggi", R.drawable.ic_user_default)
+                fragment.onShow {dialog ->
+                    //dialog.setCanceledOnTouchOutside(false)
+                }
+                fragment.onCreateView {dialog ->
+                    button_confirm.setOnClickListener {dialog.dismiss()}
+                    val addCoupon : (name: String, icon: Int)->Unit = {name, icon-> LayoutCouponBinding.inflate(LayoutInflater.from(this.context), coupon_container, true).apply {
+                        this.desc = name
+                        this.icon = ResourcesCompat.getDrawable(root.context.resources, icon, null)
+                        root.setOnClickListener {selected = !selected}
+                    }}
+                    addCoupon("10% discount", R.drawable.ic_coupon_single)
+                    addCoupon("Free drink", R.drawable.ic_coupon_single)
+                    addCoupon("Free dessert", R.drawable.ic_coupon_single)
+                    addCoupon("5% discount", R.drawable.ic_coupon_single)
+                    addCoupon("10% discount", R.drawable.ic_coupon_single)
+                    //coupon_container.addView()
+                }
+            }
             true
         }
         else -> super.onOptionsItemSelected(item)
