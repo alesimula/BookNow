@@ -219,7 +219,7 @@
 
         </androidx.cardview.widget.CardView>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button8"
             android:layout_width="0dp"
             android:layout_height="0dp"

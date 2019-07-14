@@ -1,5 +1,6 @@
 package com.pdd.booknow.activity
 
+import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
@@ -22,10 +23,12 @@ import android.util.Log
 import android.view.*
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.pdd.booknow.database.user.User
 import com.pdd.booknow.databinding.*
 import com.pdd.booknow.fragment.DataBindingDialogFragment
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_menu_add.*
 import kotlinx.android.synthetic.main.fragment_menu_add.button_selection_add
 import kotlinx.android.synthetic.main.fragment_menu_add.view.*
@@ -36,6 +39,7 @@ import java.io.ObjectOutputStream
 
 
 typealias Food = ActivityIDK.FoodType.Food
+fun foodListOf(categoty: String, vararg food: Food) = ActivityIDK.FoodType(categoty,R.drawable.ic_food_first_course, *food).food
 
 object Restaurant {
     @JvmStatic val toolbar_size by lazy {Utilities.context.theme.obtainStyledAttributes(intArrayOf(android.R.attr.actionBarSize)).let {typedArray ->
@@ -131,7 +135,7 @@ class ActivityIDK : AppCompatActivity() {
         //menu_toolbar.inflateMenu(R.menu.menu_user)
         setSupportActionBar(menu_toolbar)
 
-        if (savedInstanceState==null) supportFragmentManager.beginTransaction().add(R.id.fragment_container, FragmentMenuMain()).commit()
+        if (savedInstanceState==null) supportFragmentManager.beginTransaction().add(R.id.fragment_container, FragmentMenuMain(logged)).commit()
 
         val user = User("Table n. 5", R.drawable.ic_restaurant)
 
@@ -143,12 +147,19 @@ class ActivityIDK : AppCompatActivity() {
         }*/
     }
 
-    class FragmentMenuMain : Fragment() {
+    class FragmentMenuMain @JvmOverloads constructor(var isLogged: Boolean?=null) : Fragment() {
         override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) = FragmentMenuMainBinding.inflate(inflater).apply {
+            if (isLogged==null) isLogged = savedInstanceState?.getBoolean("logged", false)
+            logged = isLogged?:false
             title = "Menù"
             paddingHorizontal = Utilities.scale(resources.displayMetrics.mindimPixels,0.03)
             paddingVertical = paddingHorizontal
         }.let {it.root}
+
+        override fun onSaveInstanceState(outState: Bundle) {
+            super.onSaveInstanceState(outState)
+            outState.putBoolean("logged", isLogged?:false)
+        }
 
         override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
             val menuList = arrayListOf<FoodType>()
@@ -199,6 +210,41 @@ class ActivityIDK : AppCompatActivity() {
                 }
             }
 
+            val recents = foodListOf("Just for you",
+                    Food("Beer", R.drawable.ic_drinks_beer),
+                    Food("Mozzarella in Carrozza", R.drawable.ic_starters_mozzarella_in_carrozza),
+                    Food("Zucchini flowers", R.drawable.ic_starters_zucchini_flowers),
+                    Food("Marinara meatballs", R.drawable.ic_starters_marinara_meatballs),
+                    Food("Root beer", R.drawable.ic_drinks_root_beer)
+            )
+
+            val offers = foodListOf("Today's offers",
+                    Food("Coke", R.drawable.ic_drinks_coke),
+                    Food("Sprite", R.drawable.ic_drinks_sprite),
+                    Food("Mozzarella in Carrozza", R.drawable.ic_starters_mozzarella_in_carrozza),
+                    Food("Hummus", R.drawable.ic_starters_hummus),
+                    Food("Rice supplì", R.drawable.ic_starters_rice_suppli),
+                    Food("Zucchini flowers", R.drawable.ic_starters_zucchini_flowers)
+            )
+
+            button_recent.setOnClickListener {
+                activity!!.supportFragmentManager.beginTransaction().apply {
+                    setCustomAnimations(R.anim.slide_in_up, R.anim.slide_out_up, R.anim.slide_in_down, R.anim.slide_out_down)
+                    val args = Bundle().apply {putSerializable("list", recents)}
+                    replace(R.id.fragment_container, FragmentMenuCategory().apply {arguments = args})
+                    addToBackStack(null)
+                }.commit()
+            }
+
+            button_offers.setOnClickListener {
+                activity!!.supportFragmentManager.beginTransaction().apply {
+                    setCustomAnimations(R.anim.slide_in_up, R.anim.slide_out_up, R.anim.slide_in_down, R.anim.slide_out_down)
+                    val args = Bundle().apply {putSerializable("list", offers)}
+                    replace(R.id.fragment_container, FragmentMenuCategory().apply {arguments = args})
+                    addToBackStack(null)
+                }.commit()
+            }
+
             my_recycler_view.setLayoutManager(inflater1)
             my_recycler_view.setAdapter(adapter);
             my_recycler_view.isNestedScrollingEnabled = false
@@ -233,13 +279,22 @@ class ActivityIDK : AppCompatActivity() {
                             fragment.onShow {dialog->
                                 //dialog.setCanceledOnTouchOutside(false)
                             }
-                            fragment.onCreateView {
+                            fragment.onCreateView {dialog ->
                                 button_selection_add.setOnClickListener {
                                     quantity++
                                 }
                                 button_selection_remove.setOnClickListener {
                                     if (quantity>1) quantity--
                                 }
+                                button_menu_edit.setOnClickListener(object : OnClickWithFood(element) {
+                                    override fun onClick(v: View?, foodParam: Food) {
+                                        DataBindingDialogFragment.create<FragmentMenuCustomizeBinding>(fragment.activity!!.supportFragmentManager) { fragment ->
+                                            food = foodParam
+                                            fragment.onCreateView {dialog -> button_confirm.setOnClickListener {dialog.dismiss()}}
+                                        }
+                                    }
+                                })
+                                button_confirm.setOnClickListener {dialog.dismiss()}
                             }
                         }
                     }
@@ -250,5 +305,10 @@ class ActivityIDK : AppCompatActivity() {
             my_recycler_view.setAdapter(adapter);
             my_recycler_view.isNestedScrollingEnabled = false
         }
+    }
+
+    abstract class OnClickWithFood (private val foodParam: Food) : View.OnClickListener {
+        abstract fun onClick(v: View?, foodParam: Food) : Unit
+        override final fun onClick(v: View?) = onClick(v, foodParam)
     }
 }

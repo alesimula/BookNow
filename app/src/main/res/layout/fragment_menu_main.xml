@@ -6,6 +6,7 @@
     <data>
         <import type="android.view.View"/>
 
+        <variable name="logged" type="boolean" />
         <variable name="title" type="java.lang.String"/>
         <variable name="landscapeMarginBigger" type="boolean" />
         <variable name="paddingHorizontal" type="int"/>
@@ -123,41 +124,106 @@
                     android:id="@+id/button_recent"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:focusable="true"
+                    android:clickable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
                     android:layout_marginRight="@{paddingHorizontal*2}"
                     android:layout_marginLeft="@{paddingHorizontal*2}"
                     android:layout_marginTop="@{paddingHorizontal*2}"
                     android:layout_marginBottom="@{paddingHorizontal}"
+                    android:visibility="@{logged ? View.VISIBLE : View.GONE}"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="@id/margin_left"
                     app:layout_constraintEnd_toEndOf="@id/margin_right"
-                    app:cardCornerRadius="1000dp"
-                    app:cardElevation="4dp">
-                    <androidx.appcompat.widget.AppCompatTextView
+                    app:cardCornerRadius="18dp"
+                    app:cardElevation="8dp">
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:textSize="34sp"
-                        android:text="Recent"/>
+                        android:layout_height="wrap_content">
+                        <androidx.constraintlayout.widget.Guideline
+                            android:id="@+id/card_recent_image_size"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            app:layout_constraintGuide_percent="0.3" />
+
+                        <com.pdd.booknow.widget.ScalableImageView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            app:fixedScale="width"
+                            app:aspectRatio="1"
+                            app:relativeAspectRatio="false"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/card_recent_image_size"
+                            app:srcCompat="@drawable/ic_food_custom">
+                        </com.pdd.booknow.widget.ScalableImageView>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textSize="24sp"
+                            android:textColor="@color/colorAccent"
+                            android:text="Just for you"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="@id/card_recent_image_size"
+                            app:layout_constraintEnd_toEndOf="parent"/>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/button_offers"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:focusable="true"
+                    android:clickable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
                     android:layout_marginRight="@{paddingHorizontal*2}"
                     android:layout_marginLeft="@{paddingHorizontal*2}"
                     android:layout_marginTop="@{paddingHorizontal*2}"
                     app:layout_constraintTop_toBottomOf="@id/button_recent"
                     app:layout_constraintStart_toStartOf="@id/margin_left"
                     app:layout_constraintEnd_toEndOf="@id/margin_right"
-                    app:cardCornerRadius="1000dp"
-                    app:cardElevation="4dp">
-                    <androidx.appcompat.widget.AppCompatTextView
+                    app:cardCornerRadius="18dp"
+                    app:cardElevation="8dp">
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:textSize="34sp"
-                        android:text="Today's offers"/>
+                        android:layout_height="wrap_content">
+                        <androidx.constraintlayout.widget.Guideline
+                            android:id="@+id/card_offers_image_size"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            app:layout_constraintGuide_percent="0.3" />
+
+                        <com.pdd.booknow.widget.ScalableImageView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            app:fixedScale="width"
+                            app:aspectRatio="1"
+                            app:relativeAspectRatio="false"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/card_offers_image_size"
+                            app:srcCompat="@drawable/ic_food_offers">
+                        </com.pdd.booknow.widget.ScalableImageView>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textSize="24sp"
+                            android:textColor="@color/colorAccent"
+                            android:text="Today's offers"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="@id/card_offers_image_size"
+                            app:layout_constraintEnd_toEndOf="parent"/>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>
 
                 <androidx.core.widget.NestedScrollView

@@ -98,9 +98,9 @@ class DataBindingDialogFragment<B : ViewDataBinding> @JvmOverloads constructor(p
             setOnShowListener {
                 Log.e("AAAAA", "onshow")
                 bind?.invoke(binding, this@DataBindingDialogFragment)
-                onShow?.invoke(this@DataBindingDialogFragment, dialog)
+                onShow?.invoke(this@DataBindingDialogFragment, dialog!!)
                 window.decorView.apply {
-                    onCreateView?.invoke(this, dialog)
+                    onCreateView?.invoke(this, dialog!!)
                 }
                 window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE or WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM)
                 window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE)

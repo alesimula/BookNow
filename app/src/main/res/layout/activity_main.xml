@@ -120,7 +120,7 @@
         app:cardmarginpercent="@{0.15f}"
         />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/login"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="0dp"
@@ -152,7 +152,7 @@
         app:layout_constraintStart_toStartOf="@+id/margin_left"
         app:layout_constraintTop_toTopOf="@+id/guideline17" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/signup"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="0dp"
@@ -165,7 +165,7 @@
         app:layout_constraintStart_toStartOf="@+id/margin_left"
         app:layout_constraintTop_toTopOf="@+id/guideline" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/guestLogin"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="0dp"
