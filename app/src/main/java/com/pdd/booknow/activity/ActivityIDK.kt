@@ -1,6 +1,5 @@
 package com.pdd.booknow.activity
 
-import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
@@ -19,25 +18,19 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
-import android.util.Log
 import android.view.*
-import androidx.cardview.widget.CardView
+import androidx.core.view.children
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.pdd.booknow.database.user.User
 import com.pdd.booknow.databinding.*
 import com.pdd.booknow.fragment.DataBindingDialogFragment
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_coupon_redeem.view.*
-import kotlinx.android.synthetic.main.fragment_menu_add.*
-import kotlinx.android.synthetic.main.fragment_menu_add.button_selection_add
 import kotlinx.android.synthetic.main.fragment_menu_add.view.*
 import kotlinx.android.synthetic.main.fragment_menu_add.view.button_confirm
 import kotlinx.android.synthetic.main.fragment_menu_main.*
+import kotlinx.android.synthetic.main.fragment_user_info.view.*
+import kotlinx.android.synthetic.main.layout_editable_info.view.*
 import java.io.Serializable
-import java.io.ObjectInputStream
-import java.io.ObjectOutputStream
 
 
 typealias Food = ActivityIDK.FoodType.Food
@@ -110,6 +103,19 @@ class ActivityIDK : AppCompatActivity() {
                 user = User("Luiggi", R.drawable.ic_user_default)
                 fragment.onShow {dialog->
                     //dialog.setCanceledOnTouchOutside(false)
+                }
+                fragment.onCreateView {
+                    for (view in layout_user_info.children) view.apply { editable_info_button.setOnClickListener {
+                        val binding = DataBindingUtil.getBinding<LayoutEditableInfoBinding>(this)
+                        binding?.editing?.let {binding.editing = !it}
+                        val text = info_edit_text_edit.text.toString()
+                        binding?.text = text
+                    }}
+                    layout_user_info.getChildAt(3).apply { editable_info_button.setOnClickListener {
+                        DataBindingDialogFragment.create<FragmentUserInfoCreditcardBinding>(fragment.activity!!.supportFragmentManager) {fragment ->
+
+                        }
+                    }}
                 }
             }
         }

@@ -9,6 +9,7 @@
 
         <variable name="editing" type="boolean"/>
         <variable name="text" type="java.lang.String"/>
+        <variable name="desc" type="java.lang.String"/>
         <variable name="image" type="android.graphics.drawable.Drawable" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.1" />
+            app:layout_constraintGuide_percent="0.043" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/info_margin_right"
@@ -28,15 +29,15 @@
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.9" />
 
-        <com.pdd.booknow.widget.ScalableImageView
+        <TextView
             android:id="@+id/editable_info_topper"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:visibility="invisible"
+            android:textColor="@color/colorHint"
+            android:text="@{desc}"
             app:aspectRatio="4"
             app:fixedScale="width"
-            app:layout_constraintEnd_toEndOf="@id/info_margin_left"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@id/info_margin_left"
             app:layout_constraintTop_toTopOf="parent"/>
 
         <com.pdd.booknow.widget.ScalableImageView

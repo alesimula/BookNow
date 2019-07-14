@@ -70,56 +70,6 @@
                 app:layout_constraintTop_toBottomOf="@id/layout_card_square_top">
 
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_horizontal|center_vertical"
-                android:orientation="horizontal">
-
-                    <androidx.constraintlayout.widget.Guideline
-                        android:id="@+id/user_icon_size_percent"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        app:layout_constraintGuide_percent="0.15" />
-
-                    <com.pdd.booknow.widget.ScalableImageView
-                        android:id="@+id/user_icon"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:foregroundGravity="center"
-                        android:scaleType="centerCrop"
-                        app:aspectRatio="1"
-                        app:relativeAspectRatio="false"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="@id/user_icon_size_percent"
-                        app:srcCompat="@{user.icon}"
-                        app:fixedScale="width"/>
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:gravity="center_vertical"
-                        android:lines="1"
-                        android:layout_marginLeft="8sp"
-                        android:text="@{user.name}"
-                        app:layout_constraintStart_toEndOf="@id/user_icon"
-                        app:layout_constraintTop_toTopOf="@id/user_icon"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintBottom_toBottomOf="@id/user_icon"
-                        app:autoSizeTextType="uniform"/>
-                    <com.pdd.booknow.widget.ScalableImageView
-                        android:id="@+id/user_spacing"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:visibility="invisible"
-                        app:aspectRatio="3"
-                        app:layout_constraintTop_toBottomOf="@id/user_icon"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="@id/user_icon_size_percent"
-                        app:fixedScale="width"/>
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
                 <androidx.core.widget.NestedScrollView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -131,21 +81,25 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
-                        <include layout="@layout/layout_editable_info"
-                            app:text="@{&quot;Luiggi&quot;}"
+                        <include layout="@layout/layout_editable_info_creditcard"
+                            app:text="@{`8569************`}"
+                            app:desc="@{`Card number`}"
+                            app:image="@{@drawable/ic_account_credit}"
+                            />
+                        <include layout="@layout/layout_editable_info_creditcard"
+                            app:text="@{`Luigi Bressani`}"
+                            app:desc="@{`Cardholder`}"
                             app:image="@{@drawable/ic_account_username}"
                             />
-                        <include layout="@layout/layout_editable_info"
-                            app:text="@{&quot;luiggi@hotmail.com&quot;}"
-                            app:image="@{@drawable/ic_account_mail}"
+                        <include layout="@layout/layout_editable_info_creditcard"
+                            app:text="@{`123`}"
+                            app:desc="@{`CVV`}"
+                            app:image="@{@drawable/ic_account_cvv}"
                             />
-                        <include layout="@layout/layout_editable_info"
-                            app:text="@{&quot;1234&quot;}"
-                            app:image="@{@drawable/ic_account_password}"
-                            />
-                        <include layout="@layout/layout_editable_info"
-                            app:text="@{&quot;8569************&quot;}"
-                            app:image="@{@drawable/ic_account_credit}"
+                        <include layout="@layout/layout_editable_info_creditcard"
+                            app:text="@{&quot;04/02/22&quot;}"
+                            app:desc="@{`Expiration date`}"
+                            app:image="@{@drawable/ic_account_credit_expiration}"
                             />
 
                     </LinearLayout>
