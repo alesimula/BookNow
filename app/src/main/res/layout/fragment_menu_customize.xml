@@ -157,21 +157,21 @@
                     <com.google.android.material.checkbox.MaterialCheckBox
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Farina integrale"
+                        android:text="Wheat flour"
                         android:checked="true"
                         android:orientation="horizontal">
                     </com.google.android.material.checkbox.MaterialCheckBox>
                     <com.google.android.material.checkbox.MaterialCheckBox
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Soia"
+                        android:text="Tomato sauce"
                         android:checked="true"
                         android:orientation="horizontal">
                     </com.google.android.material.checkbox.MaterialCheckBox>
                     <com.google.android.material.checkbox.MaterialCheckBox
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Tanta voglia di morire"
+                        android:text="Cheese"
                         android:checked="true"
                         android:orientation="horizontal">
                     </com.google.android.material.checkbox.MaterialCheckBox>

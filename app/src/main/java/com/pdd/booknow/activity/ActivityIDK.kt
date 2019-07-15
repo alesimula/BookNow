@@ -198,13 +198,13 @@ class ActivityIDK : AppCompatActivity() {
         override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
             val menuList = arrayListOf<FoodType>()
             menuList.add(FoodType("Starters", R.drawable.ic_food_starters,
-                    Food("Marinara meatballs", R.drawable.ic_starters_marinara_meatballs),
-                    Food("Shrimp cocktail", R.drawable.ic_starters_cocktail_shrimp),
-                    Food("Mozzarella in Carrozza", R.drawable.ic_starters_mozzarella_in_carrozza),
-                    Food("Hummus", R.drawable.ic_starters_hummus),
-                    Food("Rice supplì", R.drawable.ic_starters_rice_suppli),
-                    Food("Zucchini flowers", R.drawable.ic_starters_zucchini_flowers),
-                    Food("Puff pastry Pizza", R.drawable.ic_starters_puff_pastry_pizza)
+                    Food("Marinara meatballs", R.drawable.ic_starters_marinara_meatballs, 4.89, 3, 5),
+                    Food("Shrimp cocktail", R.drawable.ic_starters_cocktail_shrimp, 4.89, 3, 4),
+                    Food("Mozzarella in Carrozza", R.drawable.ic_starters_mozzarella_in_carrozza, 5.00, 2, 4),
+                    Food("Hummus", R.drawable.ic_starters_hummus, 5.50, 3, 3),
+                    Food("Rice supplì", R.drawable.ic_starters_rice_suppli, 3.50, 5, 3),
+                    Food("Zucchini flowers", R.drawable.ic_starters_zucchini_flowers, 4.00, 5, 3),
+                    Food("Puff pastry Pizza", R.drawable.ic_starters_puff_pastry_pizza, 4.89, 5, 3)
             ))
             menuList.add(FoodType("First course", R.drawable.ic_food_first_course))
             menuList.add(FoodType("Main course", R.drawable.ic_food_main_course))
@@ -214,15 +214,15 @@ class ActivityIDK : AppCompatActivity() {
             menuList.add(FoodType("Fruit", R.drawable.ic_food_fruit))
             menuList.add(FoodType("Desserts", R.drawable.ic_food_dessert))
             menuList.add(FoodType("Drinks", R.drawable.ic_food_drinks,
-                    Food("Water (still)", R.drawable.ic_drinks_water),
-                    Food("Water (sparkling)", R.drawable.ic_drinks_water_sparkling),
-                    Food("Coke", R.drawable.ic_drinks_coke),
-                    Food("Sprite", R.drawable.ic_drinks_sprite),
-                    Food("Fanta", R.drawable.ic_drinks_fanta),
-                    Food("Red wine", R.drawable.ic_drinks_wine_red),
-                    Food("White wine", R.drawable.ic_drinks_wine_white),
-                    Food("Beer", R.drawable.ic_drinks_beer),
-                    Food("Root beer", R.drawable.ic_drinks_root_beer)
+                    Food("Water (still)", R.drawable.ic_drinks_water, 2.00, 0, 4),
+                    Food("Water (sparkling)", R.drawable.ic_drinks_water_sparkling, 2.00, 0, 4),
+                    Food("Coke", R.drawable.ic_drinks_coke, 4.00, 0, 5),
+                    Food("Sprite", R.drawable.ic_drinks_sprite, 4.00, 0, 5),
+                    Food("Fanta", R.drawable.ic_drinks_fanta, 4.00, 0, 5),
+                    Food("Red wine", R.drawable.ic_drinks_wine_red, 7.00, 1, 5),
+                    Food("White wine", R.drawable.ic_drinks_wine_white, 7.00, 1, 5),
+                    Food("Beer", R.drawable.ic_drinks_beer, 6.00, 1, 5),
+                    Food("Root beer", R.drawable.ic_drinks_root_beer, 6.00, 1, 5)
             ))
 
             val inflater1 = GridLayoutManager(context, if (Utilities.isPortrait()) 2 else 3)
@@ -245,20 +245,20 @@ class ActivityIDK : AppCompatActivity() {
             }
 
             val recents = foodListOf("Just for you",
-                    Food("Beer", R.drawable.ic_drinks_beer),
-                    Food("Mozzarella in Carrozza", R.drawable.ic_starters_mozzarella_in_carrozza),
-                    Food("Zucchini flowers", R.drawable.ic_starters_zucchini_flowers),
-                    Food("Marinara meatballs", R.drawable.ic_starters_marinara_meatballs),
-                    Food("Root beer", R.drawable.ic_drinks_root_beer)
+                    Food("Beer", R.drawable.ic_drinks_beer, 6.00, 1, 5),
+                    Food("Mozzarella in Carrozza", R.drawable.ic_starters_mozzarella_in_carrozza, 5.00, 2, 4),
+                    Food("Zucchini flowers", R.drawable.ic_starters_zucchini_flowers, 4.00, 5, 3),
+                    Food("Marinara meatballs", R.drawable.ic_starters_marinara_meatballs, 4.89, 3, 5),
+                    Food("Root beer", R.drawable.ic_drinks_root_beer, 6.00, 1, 5)
             )
 
             val offers = foodListOf("Today's offers",
-                    Food("Coke", R.drawable.ic_drinks_coke),
-                    Food("Sprite", R.drawable.ic_drinks_sprite),
-                    Food("Mozzarella in Carrozza", R.drawable.ic_starters_mozzarella_in_carrozza),
-                    Food("Hummus", R.drawable.ic_starters_hummus),
-                    Food("Rice supplì", R.drawable.ic_starters_rice_suppli),
-                    Food("Zucchini flowers", R.drawable.ic_starters_zucchini_flowers)
+                    Food("Coke", R.drawable.ic_drinks_coke, 4.00, 0, 5),
+                    Food("Sprite", R.drawable.ic_drinks_sprite, 4.00, 0, 5),
+                    Food("Mozzarella in Carrozza", R.drawable.ic_starters_mozzarella_in_carrozza, 5.00, 2, 4),
+                    Food("Hummus", R.drawable.ic_starters_hummus, 5.50, 3, 3),
+                    Food("Rice supplì", R.drawable.ic_starters_rice_suppli, 3.50, 5, 3),
+                    Food("Zucchini flowers", R.drawable.ic_starters_zucchini_flowers, 4.00, 5, 3)
             )
 
             button_recent.setOnClickListener {
