@@ -21,6 +21,7 @@ public class ActivitySignup extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mContext = this.getApplicationContext();
+        getSupportActionBar().hide();
 
         setContentView(R.layout.activity_signup);
 

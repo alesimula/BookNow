@@ -57,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
         if (Utilities.INSTANCE.isLandscape() && actionBar!=null) actionBar.hide();
         fillUserDatabase();
 
+        getSupportActionBar().hide();
+
         //DataBindingUtil.setContentView(this, R.layout.activity_main);
         ViewDataBinding v = DataBindingUtil.setContentView(this, R.layout.activity_main);
         //setContentView(R.layout.activity_main);
