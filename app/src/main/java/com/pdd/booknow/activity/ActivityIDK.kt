@@ -116,12 +116,15 @@ class ActivityIDK : AppCompatActivity() {
 
                         }
                     }}
+                    button_logout.setOnClickListener {
+                        fragment.activity!!.finish()
+                    }
                 }
             }
         }
         R.id.toolbar_cart -> {
             val activityCart = Intent(this, ActivityCart::class.java)
-            //activityCart.putExtra(EXTRA_USER, User())
+            activityCart.putExtra("logged", logged)
             startActivity(activityCart)
             true
         }

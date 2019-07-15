@@ -6,16 +6,20 @@
     <data>
         <import type="android.view.View"/>
 
-        <variable name="showConfirm" type="boolean"/>
-        <variable name="user" type="com.pdd.booknow.activity.ActivityIDK.User"/>
+        <variable name="quantity" type="int"/>
+        <variable name="food" type="com.pdd.booknow.activity.ActivityIDK.FoodType.Food"/>
     </data>
     <androidx.cardview.widget.CardView
+        android:id="@+id/somethingsomethingcardview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:focusable="true"
         android:foreground="?android:attr/selectableItemBackground"
         app:cardCornerRadius="10sp"
         app:cardElevation="6dp">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -71,52 +75,78 @@
                 app:layout_constraintTop_toBottomOf="@id/layout_card_square_top">
 
 
-                <androidx.core.widget.NestedScrollView
+                <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:orientation="horizontal">
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/user_icon_size_percent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_percent="0.25" />
+
+                    <com.pdd.booknow.widget.ScalableImageView
+                        android:id="@+id/user_icon_holder"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:visibility="invisible"
+                        app:aspectRatio="1"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="@id/user_icon_size_percent"
+                        app:fixedScale="width"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginLeft="24sp"
+                        android:layout_marginRight="24sp"
+                        android:gravity="center_vertical"
+                        android:lines="1"
+                        android:text="Order completed!"
+                        android:textColor="@color/colorAccent"
+                        app:autoSizeTextType="uniform"
+                        app:layout_constraintBottom_toBottomOf="@id/user_icon_holder"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/user_icon_holder" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:scrollbarStyle="outsideOverlay">
+                    android:layout_marginBottom="10sp"
+                    android:orientation="vertical">
 
-                    <LinearLayout
-                        android:id="@+id/layout_user_info"
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <include layout="@layout/layout_editable_info_creditcard"
-                            app:text="@{`8569************`}"
-                            app:desc="@{`Card number`}"
-                            app:image="@{@drawable/ic_account_credit}"
-                            />
-                        <include layout="@layout/layout_editable_info_creditcard"
-                            app:text="@{`Luigi Bressani`}"
-                            app:desc="@{`Cardholder`}"
-                            app:image="@{@drawable/ic_account_username}"
-                            />
-                        <include layout="@layout/layout_editable_info_creditcard"
-                            app:text="@{`123`}"
-                            app:desc="@{`CVV`}"
-                            app:image="@{@drawable/ic_account_cvv}"
-                            />
-                        <include layout="@layout/layout_editable_info_creditcard"
-                            app:text="@{&quot;04/02/22&quot;}"
-                            app:desc="@{`Expiration date`}"
-                            app:image="@{@drawable/ic_account_credit_expiration}"
-                            />
-
-                    </LinearLayout>
-                </androidx.core.widget.NestedScrollView>
-
+                        android:gravity="center"
+                        android:textColor="@color/colorAccent"
+                        android:lines="1"
+                        android:textSize="54sp"
+                        android:layout_marginLeft="8sp"
+                        android:text="Your order is in preparation"
+                        app:layout_constraintStart_toEndOf="@id/user_icon_holder"
+                        app:layout_constraintTop_toTopOf="@id/user_icon_holder"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintBottom_toBottomOf="@id/user_icon_holder"
+                        app:autoSizeTextType="uniform"/>
+                </LinearLayout>
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:visibility="@{showConfirm ? View.VISIBLE : View.GONE}">
+                    android:orientation="horizontal">
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/button_confirm"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right"
-                        android:text="Pay"
+                        android:text="OK"
                         android:textColor="#BCCCD5"
                         android:background="@drawable/button_material_rounded"
                         app:layout_constraintTop_toTopOf="parent"
@@ -124,5 +154,6 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
     </androidx.cardview.widget.CardView>
 </layout>

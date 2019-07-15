@@ -72,6 +72,7 @@
                     app:relativeAspectRatio="false"/>
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/fragment_menu_title"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:textAlignment="center"

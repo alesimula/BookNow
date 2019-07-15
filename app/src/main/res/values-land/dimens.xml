@@ -14,9 +14,9 @@
     <dimen name="recyclerview_rescale_margin_left" format="float">0.2075</dimen>
     <dimen name="recyclerview_rescale_margin_right" format="float">  0.7925</dimen>
 
-    <dimen name="activity_main_user_up" format="float">0.08</dimen>
-    <dimen name="activity_main_user_down" format="float">0.23</dimen>
-    <dimen name="activity_main_password_up" format="float">0.27</dimen>
-    <dimen name="activity_main_password_down" format="float">0.42</dimen>
+    <dimen name="activity_main_user_up" format="float">0.22</dimen>
+    <dimen name="activity_main_user_down" format="float">0.37</dimen>
+    <dimen name="activity_main_password_up" format="float">0.40</dimen>
+    <dimen name="activity_main_password_down" format="float">0.55</dimen>
 
 </resources>

@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         password = (EditText)cardViewPassword.findViewById(R.id.input_card_text);
         login = (Button)findViewById(R.id.login);
         signup = (Button)findViewById(R.id.signup);
-        guestLogin = (Button)findViewById(R.id.guestLogin);
+        //guestLogin = (Button)findViewById(R.id.guestLogin);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,14 +91,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        guestLogin.setOnClickListener(new View.OnClickListener() {
+        /*guestLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent showResults = new Intent(MainActivity.this, ActivityIDK.class);
                 showResults.putExtra(EXTRA_USER, new User());
                 startActivity(showResults);
             }
-        });
+        });*/
     }
 
     private User login()
